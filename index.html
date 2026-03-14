@@ -189,6 +189,8 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .subject-card.hidden { display: none; }
@@ -230,6 +232,83 @@
 
         .links a:hover { background: var(--primary); box-shadow: var(--glow); }
 
+        /* --- CHANNELS SECTION --- */
+        .channel-box {
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .channel-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--subtext);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .channel-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .channel-tags span {
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(188, 19, 254, 0.4);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: #fff;
+        }
+
+        /* --- COMMUNITY SECTION --- */
+        .community-section {
+            margin: 40px 0;
+            padding: 20px;
+        }
+
+        .community-header {
+            text-align: center;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: var(--glow);
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .community-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .community-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+            background: rgba(188, 19, 254, 0.1);
+            transform: scale(1.02);
+        }
+
+        .comm-icon { font-size: 1.5rem; }
+        .comm-info strong { display: block; font-size: 0.85rem; color: var(--primary); letter-spacing: 0.5px; }
+        .comm-info span { font-size: 0.7rem; color: var(--subtext); }
+
+        /* --- DIVIDERS --- */
         .section-divider {
             height: 1px; width: 100%;
             background: linear-gradient(90deg, transparent, var(--primary), transparent);
@@ -237,7 +316,7 @@
         }
 
         .section-divider::after {
-            content: 'LIVE FOCUS SESSION';
+            content: attr(data-label);
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             background: #0d0d0d; padding: 0 15px;
@@ -245,6 +324,7 @@
             letter-spacing: 4px; font-weight: 900;
         }
 
+        /* --- POMODORO --- */
         .pomodoro-container {
             max-width: 450px; margin: 0 auto 40px auto;
             background: var(--pomo-bg);
@@ -350,6 +430,13 @@
                 <a href="https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-o-level-english-language-1123/" target="_blank">Syllabus <span>📋</span></a>
                 <a href="https://drive.google.com/drive/folders/1K_8t8Flup5AwcCUtdIWUvciybrsaCn0d?usp=sharing" target="_blank">Books <span>📚</span></a>
             </div>
+            <div class="channel-box">
+                <p class="channel-title">Top Channels</p>
+                <div class="channel-tags">
+                    <span>The English Academy</span>
+                    <span>SkH-English</span>
+                </div>
+            </div>
         </div>
 
         <div class="subject-card">
@@ -358,6 +445,13 @@
                 <a href="pakstudies-notes.html">Notes <span>📖</span></a>
                 <a href="#">Syllabus <span>📋</span></a>
                 <a href="#">Books <span>📚</span></a>
+            </div>
+            <div class="channel-box">
+                <p class="channel-title">Top Channels</p>
+                <div class="channel-tags">
+                    <span>History with Yusra</span>
+                    <span>The Pak Studies Guru</span>
+                </div>
             </div>
         </div>
 
@@ -368,6 +462,13 @@
                 <a href="#">Syllabus <span>📋</span></a>
                 <a href="#">Books <span>📚</span></a>
             </div>
+            <div class="channel-box">
+                <p class="channel-title">Top Channels</p>
+                <div class="channel-tags">
+                    <span>Sir Muzammil</span>
+                    <span>Islamic Studies Academy</span>
+                </div>
+            </div>
         </div>
 
         <div class="subject-card">
@@ -376,6 +477,14 @@
                 <a href="maths-notes.html">Notes <span>📖</span></a>
                 <a href="#">Syllabus <span>📋</span></a>
                 <a href="#">Books <span>📚</span></a>
+            </div>
+            <div class="channel-box">
+                <p class="channel-title">Top Channels</p>
+                <div class="channel-tags">
+                    <span>Zainematics</span>
+                    <span>D Math Academy</span>
+                    <span>Mathlete Saad</span>
+                </div>
             </div>
         </div>
 
@@ -386,6 +495,13 @@
                 <a href="https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-o-level-biology-5090/" target="_blank">Syllabus <span>📋</span></a>
                 <a href="https://drive.google.com/drive/folders/10tHaHHjHJe4y7FXm-j2It0ge7qLbTzcI?usp=sharing" target="_blank">Books <span>📚</span></a>
             </div>
+            <div class="channel-box">
+                <p class="channel-title">Top Channels</p>
+                <div class="channel-tags">
+                    <span>Science with Hazel</span>
+                    <span>Biology with Dr. NS</span>
+                </div>
+            </div>
         </div>
 
         <div class="subject-card">
@@ -394,6 +510,13 @@
                 <a href="chemistry-notes.html">Notes <span>📖</span></a>
                 <a href="#">Syllabus <span>📋</span></a>
                 <a href="#">Books <span>📚</span></a>
+            </div>
+            <div class="channel-box">
+                <p class="channel-title">Top Channels</p>
+                <div class="channel-tags">
+                    <span>Chem with Bilal</span>
+                    <span>Cognito</span>
+                </div>
             </div>
         </div>
 
@@ -404,10 +527,67 @@
                 <a href="#">Syllabus <span>📋</span></a>
                 <a href="#">Books <span>📚</span></a>
             </div>
+            <div class="channel-box">
+                <p class="channel-title">Top Channels</p>
+                <div class="channel-tags">
+                    <span>Physics with Talha</span>
+                    <span>Prosperity Academy</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="section-divider"></div>
+    <div class="section-divider" data-label="STUDY COMMUNITIES"></div>
+
+    <div class="community-section">
+        <h2 class="community-header">Global Study Networks</h2>
+        <div class="community-grid">
+            <a href="https://discord.gg/igcse" target="_blank" class="community-card">
+                <span class="comm-icon">🌍</span>
+                <div class="comm-info">
+                    <strong>r/IGCSE</strong>
+                    <span>Largest global hub</span>
+                </div>
+            </a>
+            <a href="https://discord.gg/znotes" target="_blank" class="community-card">
+                <span class="comm-icon">📝</span>
+                <div class="comm-info">
+                    <strong>ZNotes</strong>
+                    <span>Notes & Live Events</span>
+                </div>
+            </a>
+            <a href="https://discord.gg/oalevel" target="_blank" class="community-card">
+                <span class="comm-icon">🎓</span>
+                <div class="comm-info">
+                    <strong>O/A Levels Community</strong>
+                    <span>Peer-to-peer help</span>
+                </div>
+            </a>
+            <a href="https://discord.gg/mojza" target="_blank" class="community-card">
+                <span class="comm-icon">⚡</span>
+                <div class="comm-info">
+                    <strong>Mojza</strong>
+                    <span>Local & Global Resources</span>
+                </div>
+            </a>
+            <a href="https://discord.gg/nerd-cafe-804300302325940254" target="_blank" class="community-card">
+                <span class="comm-icon">☕</span>
+                <div class="comm-info">
+                    <strong>Nerd Cafe</strong>
+                    <span>Active Study Rooms</span>
+                </div>
+            </a>
+            <a href="https://discord.gg/coali" target="_blank" class="community-card">
+                <span class="comm-icon">🤝</span>
+                <div class="comm-info">
+                    <strong>COALI</strong>
+                    <span>Networking & Support</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="section-divider" data-label="LIVE FOCUS SESSION"></div>
 
     <div class="pomodoro-container">
         <div class="pomo-header">Pomodoro Timer</div>
