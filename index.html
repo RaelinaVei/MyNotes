@@ -3,39 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudyVault | My Neon Notes</title>
+    <title>StudyVault | Neon Purple</title>
     <style>
-        /* Neon Color Palette */
+        /* Neon Purple & Glassmorphism Palette */
         :root {
-            --primary: #00d4ff; /* Electric Blue */
+            --primary: #bc13fe; /* Neon Purple */
             --secondary: #ff007f; /* Neon Pink */
-            --bg: #f0f2f5;
-            --card: #ffffff;
-            --text: #1a1a2e;
-            --subtext: #4a5568;
-            --link-bg: #e2e8f0;
-            --glow: 0 0 10px rgba(0, 212, 255, 0.3);
+            --text: #ffffff;
+            --subtext: #e2e8f0;
+            --card-bg: rgba(255, 255, 255, 0.1); /* Glass effect */
+            --link-bg: rgba(255, 255, 255, 0.2);
+            --glow: 0 0 15px rgba(188, 19, 254, 0.6);
+            /* REPLACCE THIS URL WITH YOUR IMAGE */
+            --bg-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop'); 
         }
 
-        /* Dark Mode Neon Glow */
         [data-theme="dark"] {
-            --bg: #0a0a0c;
-            --card: #16161d;
-            --text: #ffffff;
-            --subtext: #a0aec0;
-            --link-bg: #2d3748;
-            --primary: #00f2ff;
-            --secondary: #bc13fe; /* Neon Purple */
-            --glow: 0 0 15px rgba(0, 242, 255, 0.6);
+            --primary: #df16ff;
+            --card-bg: rgba(0, 0, 0, 0.4);
+            --link-bg: rgba(255, 255, 255, 0.1);
+            --bg-image: url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=2070&auto=format&fit=crop');
         }
 
         body { 
-            font-family: 'Segoe UI', Roboto, sans-serif; 
-            background: var(--bg); 
+            font-family: 'Segoe UI', sans-serif; 
             color: var(--text); 
             margin: 0; 
             padding: 20px; 
             line-height: 1.6; 
+            min-height: 100vh;
+            /* Background settings */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             transition: all 0.4s ease; 
         }
 
@@ -45,92 +46,72 @@
         
         h1 { 
             margin: 0; 
-            font-size: 3rem; 
+            font-size: 3.5rem; 
             color: var(--primary); 
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: var(--glow);
+            letter-spacing: 4px;
+            text-shadow: var(--glow), 0 0 30px rgba(188, 19, 254, 0.4);
         }
 
-        p.subtitle { color: var(--subtext); margin-top: 10px; font-weight: 500; }
+        p.subtitle { color: var(--subtext); margin-top: 10px; font-weight: 500; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
 
-        /* Dark Mode Toggle */
         .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--primary);
-            color: #000;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: var(--glow);
-            transition: 0.3s;
-            z-index: 1000;
+            position: fixed; top: 20px; right: 20px;
+            background: var(--primary); color: white;
+            border: none; padding: 12px 20px; border-radius: 30px;
+            cursor: pointer; font-weight: bold;
+            box-shadow: var(--glow); z-index: 1000;
         }
-        .theme-toggle:hover { transform: scale(1.05); opacity: 0.9; }
 
-        /* The Grid */
         .subject-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
             gap: 25px; 
-            margin-top: 20px; 
         }
 
+        /* Glassmorphism Card */
         .subject-card { 
-            background: var(--card); 
+            background: var(--card-bg); 
+            backdrop-filter: blur(12px); /* THIS CREATES THE GLASS EFFECT */
+            -webkit-backdrop-filter: blur(12px);
             padding: 25px; 
-            border-radius: 16px; 
-            border: 1px solid var(--link-bg);
+            border-radius: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
-        /* Neon border effect on hover */
         .subject-card:hover { 
-            transform: translateY(-8px); 
+            transform: translateY(-10px); 
             border-color: var(--primary);
             box-shadow: var(--glow);
         }
 
         .subject-card h2 { 
-            margin-top: 0; 
-            color: var(--primary); 
-            font-size: 1.5rem;
-            border-bottom: 2px solid var(--link-bg); 
+            margin-top: 0; color: var(--primary); 
+            font-size: 1.6rem; text-shadow: var(--glow);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
             padding-bottom: 12px; 
         }
 
-        /* Link buttons */
         .links { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
         
         .links a { 
-            text-decoration: none; 
-            color: var(--text); 
+            text-decoration: none; color: white; 
             background: var(--link-bg); 
-            padding: 12px 15px; 
-            border-radius: 8px; 
-            font-size: 0.95rem;
-            font-weight: 500;
-            display: flex;
-            justify-content: space-between;
-            transition: 0.2s;
+            padding: 12px 15px; border-radius: 10px; 
+            font-weight: 500; display: flex; justify-content: space-between;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
         }
 
         .links a:hover { 
             background: var(--primary); 
-            color: #000; 
             box-shadow: var(--glow);
-            padding-left: 20px;
+            transform: scale(1.02);
         }
 
-        .links a::after { content: '⚡'; font-size: 0.8rem; opacity: 0.7; }
-
-        footer { text-align: center; margin-top: 60px; color: var(--subtext); font-size: 0.9rem; padding-bottom: 20px; }
+        footer { text-align: center; margin-top: 60px; color: var(--subtext); padding-bottom: 20px; }
     </style>
 </head>
 <body>
@@ -139,77 +120,77 @@
 
 <div class="container">
     <header>
-        <h1>⚡ StudyVault</h1>
-        <p class="subtitle">Your digital library for notes, papers, and books.</p>
+        <h1>💜 StudyVault</h1>
+        <p class="subtitle">Neon Hub for Your Academic Success</p>
     </header>
 
     <div class="subject-grid">
         <div class="subject-card">
             <h2>English</h2>
             <div class="links">
-                <a href="english-notes.html">Notes</a>
-                <a href="english-papers.html">Past Papers</a>
-                <a href="english-books.html">Books</a>
+                <a href="english-notes.html">Notes <span>📖</span></a>
+                <a href="english-papers.html">Past Papers <span>📄</span></a>
+                <a href="english-books.html">Books <span>📚</span></a>
             </div>
         </div>
 
         <div class="subject-card">
-            <h2>Pakistan Studies</h2>
+            <h2>Pak Studies</h2>
             <div class="links">
-                <a href="pakstudies-notes.html">Notes</a>
-                <a href="pakstudies-papers.html">Past Papers</a>
-                <a href="pakstudies-books.html">Books</a>
+                <a href="pakstudies-notes.html">Notes <span>📖</span></a>
+                <a href="pakstudies-papers.html">Past Papers <span>📄</span></a>
+                <a href="pakstudies-books.html">Books <span>📚</span></a>
             </div>
         </div>
 
         <div class="subject-card">
             <h2>Islamiat</h2>
             <div class="links">
-                <a href="islamiat-notes.html">Notes</a>
-                <a href="islamiat-papers.html">Past Papers</a>
-                <a href="islamiat-books.html">Books</a>
+                <a href="islamiat-notes.html">Notes <span>📖</span></a>
+                <a href="islamiat-papers.html">Past Papers <span>📄</span></a>
+                <a href="islamiat-books.html">Books <span>📚</span></a>
             </div>
         </div>
 
         <div class="subject-card">
             <h2>Mathematics</h2>
             <div class="links">
-                <a href="maths-notes.html">Notes</a>
-                <a href="maths-papers.html">Past Papers</a>
-                <a href="maths-books.html">Books</a>
+                <a href="maths-notes.html">Notes <span>📖</span></a>
+                <a href="maths-papers.html">Past Papers <span>📄</span></a>
+                <a href="maths-books.html">Books <span>📚</span></a>
             </div>
         </div>
 
         <div class="subject-card">
             <h2>Biology</h2>
             <div class="links">
-                <a href="biology-notes.html">Notes</a>
-                <a href="biology-papers.html">Past Papers</a>
-                <a href="biology-books.html">Books</a>
+                <a href="biology-notes.html">Notes <span>📖</span></a>
+                <a href="biology-papers.html">Past Papers <span>📄</span></a>
+                <a href="biology-books.html">Books <span>📚</span></a>
             </div>
         </div>
 
         <div class="subject-card">
             <h2>Chemistry</h2>
             <div class="links">
-                <a href="chemistry-notes.html">Notes</a>
-                <a href="chemistry-papers.html">Past Papers</a>
-                <a href="chemistry-books.html">Books</a>
+                <a href="chemistry-notes.html">Notes <span>📖</span></a>
+                <a href="chemistry-papers.html">Past Papers <span>📄</span></a>
+                <a href="chemistry-books.html">Books <span>📚</span></a>
             </div>
         </div>
 
         <div class="subject-card">
             <h2>Physics</h2>
             <div class="links">
-                <a href="physics-notes.html">Notes</a>
-                <a href="physics-papers.html">Past Papers</a>
-                <a href="physics-books.html">Books</a>
+                <a href="physics-notes.html">Notes <span>📖</span></a>
+                <a href="physics-papers.html">Past Papers <span>📄</span></a>
+                <a href="physics-books.html">Books <span>📚</span></a>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>Built with ⚡ by [Your Name]</p>
+        <p>Stay Bright. Study Hard. ✨</p>
     </footer>
 </div>
 
@@ -217,7 +198,6 @@
     function toggleTheme() {
         const body = document.documentElement;
         const btn = document.getElementById('themeBtn');
-        
         if (body.getAttribute('data-theme') === 'dark') {
             body.removeAttribute('data-theme');
             btn.innerHTML = "🌙 Dark Mode";
