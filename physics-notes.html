@@ -6,39 +6,31 @@
     <title>Physics Vault | StudyVault</title>
     <style>
         :root {
-            --primary: #bc13fe; /* Neon Purple */
+            --primary: #bc13fe; 
             --text: #ffffff;
             --subtext: #cbd5e1;
             --bg-image: url('https://w0.peakpx.com/wallpaper/700/152/HD-wallpaper-mountains-in-dark-night-background-dark.jpg');
-            --card-bg: rgba(255, 255, 255, 0.07); 
-            --link-bg: rgba(255, 255, 255, 0.1);
-            --glow: 0 0 15px rgba(188, 19, 254, 0.8);
+            --card-bg: rgba(255, 255, 255, 0.05); 
+            --glow: 0 0 20px rgba(188, 19, 254, 0.6);
         }
 
         [data-theme="dark"] {
             --primary: #df16ff;
-            --card-bg: rgba(0, 0, 0, 0.5);
-            --link-bg: rgba(255, 255, 255, 0.05);
+            --card-bg: rgba(0, 0, 0, 0.4);
         }
 
-        /* LIVE BACKGROUND CANVAS */
         #starfield {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
         }
 
         body { 
             font-family: 'Segoe UI', sans-serif; 
             color: var(--text); 
-            margin: 0; 
-            padding: 20px; 
+            margin: 0; padding: 20px; 
             min-height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), var(--bg-image);
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), var(--bg-image);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -48,96 +40,97 @@
 
         .container { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
 
-        header { text-align: center; padding: 40px 0; }
+        header { text-align: center; padding: 20px 0 40px 0; }
         
+        .back-nav { margin-bottom: 30px; }
+        .back-btn { 
+            text-decoration: none; color: white; background: rgba(0,0,0,0.3); 
+            padding: 8px 24px; border-radius: 20px; font-size: 0.85rem; 
+            border: 1px solid rgba(255,255,255,0.4); transition: 0.3s;
+        }
+        .back-btn:hover { border-color: var(--primary); box-shadow: var(--glow); }
+
         h1 { 
-            margin: 0; 
-            font-size: 3.5rem; 
+            margin: 10px 0; font-size: 3.8rem; 
             color: var(--primary); 
             text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: var(--glow), 0 0 30px rgba(188, 19, 254, 0.4);
+            letter-spacing: 3px;
+            text-shadow: var(--glow);
         }
 
-        .back-btn { 
-            text-decoration: none; 
-            color: white; 
-            background: rgba(255,255,255,0.1); 
-            padding: 10px 25px; 
-            border-radius: 30px; 
-            font-size: 0.9rem; 
-            border: 1px solid var(--primary);
-            transition: 0.3s; 
-            display: inline-block; 
-            margin-bottom: 20px;
-            backdrop-filter: blur(5px);
+        .section-title {
+            font-size: 2.2rem;
+            color: #fff;
+            text-align: center;
+            margin: 50px 0 30px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding-bottom: 10px;
+            width: 100%;
         }
-        .back-btn:hover { background: var(--primary); box-shadow: var(--glow); color: black; font-weight: bold; }
 
-        .subtitle { color: var(--subtext); margin-top: 10px; font-weight: 500; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .divider {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 60px 0;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
 
         .theme-toggle {
             position: fixed; top: 20px; right: 20px;
             background: var(--primary); color: white;
-            border: none; padding: 12px 20px; border-radius: 30px;
+            border: none; padding: 10px 18px; border-radius: 30px;
             cursor: pointer; font-weight: bold;
             box-shadow: var(--glow); z-index: 1000;
         }
 
-        .teacher-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+        .teacher-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
         }
 
-        .teacher-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 30px;
+        .teacher-card { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 45px 30px; 
+            border-radius: 25px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            transition: 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+            transition: 0.4s ease;
         }
 
         .teacher-card:hover { 
-            border-color: var(--primary); 
-            box-shadow: var(--glow); 
-            transform: translateY(-8px); 
-            background: rgba(188, 19, 254, 0.05);
+            transform: translateY(-12px); 
+            border-color: var(--primary);
+            box-shadow: var(--glow);
         }
 
-        .avatar {
-            width: 70px; height: 70px;
-            background: linear-gradient(45deg, var(--primary), #4facfe);
-            border-radius: 50%; margin-bottom: 15px;
+        .avatar { 
+            width: 70px; height: 70px; 
+            background: rgba(188, 19, 254, 0.15); 
+            border: 2px solid var(--primary);
+            border-radius: 50%; margin: 0 auto 25px; 
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.8rem; font-weight: bold; box-shadow: var(--glow);
+            font-size: 2rem; font-weight: bold; color: var(--primary);
+            box-shadow: var(--glow);
         }
 
-        .teacher-card h2 { margin: 10px 0; font-size: 1.6rem; color: var(--primary); text-shadow: var(--glow); }
-        .teacher-card p { font-size: 0.95rem; color: var(--subtext); line-height: 1.6; margin-bottom: 25px; }
+        .teacher-card h2 { margin: 15px 0; font-size: 1.7rem; color: var(--primary); text-shadow: var(--glow); }
+        .teacher-card p { font-size: 0.95rem; color: var(--subtext); line-height: 1.6; margin-bottom: 30px; }
 
         .access-btn {
-            width: 100%; 
-            text-decoration: none; 
-            color: white;
-            background: var(--link-bg); 
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 12px; 
-            border-radius: 12px; 
-            font-weight: bold; 
-            transition: 0.3s;
+            display: block; text-decoration: none; color: white;
+            background: rgba(188, 19, 254, 0.2); border: 1px solid var(--primary);
+            padding: 14px; border-radius: 12px; font-weight: bold; transition: 0.3s;
         }
-        .access-btn:hover { background: var(--primary); color: white; box-shadow: var(--glow); transform: scale(1.05); }
 
-        footer { text-align: center; margin-top: 60px; color: var(--subtext); padding-bottom: 40px; }
+        .access-btn:hover { background: var(--primary); box-shadow: var(--glow); color: #fff; }
+
+        footer { text-align: center; margin-top: 80px; color: var(--subtext); padding-bottom: 40px; }
     </style>
 </head>
 <body>
@@ -148,32 +141,40 @@
 
 <div class="container">
     <header>
-        <a href="index.html" class="back-btn">← Back to Dashboard</a>
-        <h1>Physics Vault ⚡</h1>
-        <p class="subtitle">Dynamics, Waves, and Atomic Theory</p>
+        <div class="back-nav">
+            <a href="index.html" class="back-btn">← Back to Dashboard</a>
+        </div>
+        <h1>Physics Vault ⚛️</h1>
     </header>
 
+    <h2 class="section-title">⚖️ General & Thermal Physics</h2>
     <div class="teacher-grid">
-        <div class="teacher-card">
-            <div class="avatar">M</div>
-            <h2>Mechanics</h2>
-            <p>Master Newton's Laws, Kinematics, and Terminal Velocity with detailed visual diagrams.</p>
-            <a href="#" class="access-btn">Access Notes</a>
-        </div>
+        <div class="teacher-card"><div class="avatar">1</div><h2>Measurement</h2><p>Units, precision, and scalar vs vector quantities.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">2</div><h2>Kinematics</h2><p>Distance-time and velocity-time graphs.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">3</div><h2>Dynamics</h2><p>Newton's Laws, friction, and circular motion.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">4</div><h2>Mass, Weight, Density</h2><p>Gravitational field strength and calculations.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">5</div><h2>Turning Effects</h2><p>Moments, stability, and center of mass.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">6</div><h2>Work & Energy</h2><p>Kinetic energy, GPE, and power efficiency.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">7</div><h2>Pressure</h2><p>Barometers, manometers, and hydraulic systems.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">8</div><h2>Kinetic Model</h2><p>States of matter and Brownian motion.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">9</div><h2>Thermal Properties</h2><p>Specific heat capacity and latent heat.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">10</div><h2>Thermal Transfer</h2><p>Conduction, convection, and radiation.</p><a href="#" class="access-btn">Access</a></div>
+    </div>
 
-        <div class="teacher-card">
-            <div class="avatar">W</div>
-            <h2>Waves & Light</h2>
-            <p>Comprehensive guides on Reflection, Refraction, and the EM Spectrum for O-Levels.</p>
-            <a href="#" class="access-btn">Access Notes</a>
-        </div>
+    <div class="divider"></div>
 
-        <div class="teacher-card">
-            <div class="avatar">E</div>
-            <h2>Electricity</h2>
-            <p>Circuit logic, Ohm's Law, and electromagnetic induction simplified for revision.</p>
-            <a href="#" class="access-btn">Access Notes</a>
-        </div>
+    <h2 class="section-title">⚡ Waves, Elect & Atomic</h2>
+    <div class="teacher-grid">
+        <div class="teacher-card"><div class="avatar">1</div><h2>Wave Properties</h2><p>Reflection, refraction, and diffraction.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">2</div><h2>Light</h2><p>Lenses, mirrors, and the EM spectrum.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">3</div><h2>Sound</h2><p>Speed of sound, ultrasound, and echoes.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">4</div><h2>Magnetism</h2><p>Magnetic fields and induction properties.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">5</div><h2>Static Electricity</h2><p>Electric fields and charge separation.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">6</div><h2>Current Elect</h2><p>Ohm's law, circuits, and components.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">7</div><h2>Practical Elect</h2><p>Fuses, safety, and domestic energy.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">8</div><h2>Electromagnetism</h2><p>Motors, generators, and transformers.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">9</div><h2>Atomic Physics</h2><p>Structure of atoms and radioactivity.</p><a href="#" class="access-btn">Access</a></div>
+        <div class="teacher-card"><div class="avatar">10</div><h2>Space Physics</h2><p>Stars, galaxies, and the Big Bang.</p><a href="#" class="access-btn">Access</a></div>
     </div>
 
     <footer>
@@ -182,25 +183,28 @@
 </div>
 
 <script>
-    // THEME TOGGLE logic
     function toggleTheme() {
         const body = document.documentElement;
         const btn = document.getElementById('themeBtn');
         if (body.getAttribute('data-theme') === 'dark') {
             body.removeAttribute('data-theme');
+            localStorage.setItem('studyvault-theme', 'light');
             btn.innerHTML = "🌙 Dark Mode";
         } else {
             body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('studyvault-theme', 'dark');
             btn.innerHTML = "☀️ Light Mode";
         }
     }
 
-    // STARFIELD ENGINE (Warp Speed Effect)
+    if (localStorage.getItem('studyvault-theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.getElementById('themeBtn').innerHTML = "☀️ Light Mode";
+    }
+
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
-
     let width, height, stars = [];
-    const numStars = 400; 
 
     function init() {
         width = window.innerWidth;
@@ -208,7 +212,7 @@
         canvas.width = width;
         canvas.height = height;
         stars = [];
-        for (let i = 0; i < numStars; i++) {
+        for (let i = 0; i < 400; i++) {
             stars.push({
                 x: Math.random() * width - width / 2,
                 y: Math.random() * height - height / 2,
@@ -220,17 +224,15 @@
 
     function draw() {
         ctx.clearRect(0, 0, width, height);
-        for (let i = 0; i < numStars; i++) {
+        for (let i = 0; i < 400; i++) {
             let star = stars[i];
-            star.z -= 1.2; 
-            if (star.z <= 0) { star.z = width; }
-
+            star.z -= 1.2;
+            if (star.z <= 0) star.z = width;
             const sx = (star.x / star.z) * (width / 2) + width / 2;
             const sy = (star.y / star.z) * (height / 2) + height / 2;
             const size = (1 - star.z / width) * 2.5;
-
             ctx.beginPath();
-            ctx.fillStyle = `rgba(188, 19, 254, ${star.opacity})`; 
+            ctx.fillStyle = `rgba(188, 19, 254, ${star.opacity})`;
             ctx.arc(sx, sy, size, 0, Math.PI * 2);
             ctx.fill();
         }
