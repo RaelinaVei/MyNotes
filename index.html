@@ -1,64 +1,239 @@
-// --- UPDATED SYNCED TIMER LOGIC ---
-let timerId = null;
-
-function updateDisplay(seconds) {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    const timeStr = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-    document.getElementById('timerDisplay').textContent = timeStr;
-}
-
-function toggleTimer() {
-    const isRunning = localStorage.getItem('timerRunning') === 'true';
-    const btn = document.getElementById('pomoBtn');
-
-    if (!isRunning) {
-        // STARTING
-        const mins = document.getElementById('studyMin').value;
-        const expiryTime = Date.now() + (mins * 60 * 1000);
-        
-        localStorage.setItem('timerExpiry', expiryTime);
-        localStorage.setItem('timerRunning', 'true');
-        btn.textContent = "PAUSE SESSION";
-        startInterval();
-    } else {
-        // PAUSING
-        clearInterval(timerId);
-        localStorage.setItem('timerRunning', 'false');
-        btn.textContent = "RESUME SESSION";
-    }
-}
-
-function startInterval() {
-    if(timerId) clearInterval(timerId);
-    timerId = setInterval(() => {
-        const expiry = localStorage.getItem('timerExpiry');
-        const now = Date.now();
-        const diff = Math.max(0, Math.floor((expiry - now) / 1000));
-
-        updateDisplay(diff);
-
-        if (diff <= 0) {
-            clearInterval(timerId);
-            localStorage.setItem('timerRunning', 'false');
-            alert("Time is up!");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyVault | Dashboard</title>
+    <style>
+        :root {
+            --primary: #bc13fe; 
+            --text: #ffffff;
+            --subtext: #cbd5e1;
+            --bg-image: url('https://w0.peakpx.com/wallpaper/700/152/HD-wallpaper-mountains-in-dark-night-background-dark.jpg');
+            --card-bg: rgba(255, 255, 255, 0.07); 
+            --glow: 0 0 20px rgba(188, 19, 254, 0.5);
         }
-    }, 500);
-}
 
-function resetTimer() {
-    clearInterval(timerId);
-    localStorage.setItem('timerRunning', 'false');
-    localStorage.removeItem('timerExpiry');
-    const mins = document.getElementById('studyMin').value;
-    updateDisplay(mins * 60);
-    document.getElementById('pomoBtn').textContent = "START SESSION";
-}
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text);
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
 
-// Check on load if timer was already running from elsewhere
-window.onload = () => {
-    if(localStorage.getItem('timerRunning') === 'true') {
-        startInterval();
-        document.getElementById('pomoBtn').textContent = "PAUSE SESSION";
-    }
-};
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: var(--primary);
+            text-shadow: var(--glow);
+        }
+
+        /* --- SUBJECT SECTIONS (Your Existing Layout) --- */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .subject-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        /* --- THE SLEEK SEPARATOR --- */
+        .section-divider {
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            margin: 60px 0;
+            opacity: 0.6;
+            box-shadow: var(--glow);
+            position: relative;
+        }
+
+        .section-divider::after {
+            content: 'FOCUS MODE';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #0d0d0d; /* Matches the dark bg overlay */
+            padding: 0 15px;
+            color: var(--primary);
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            font-weight: 900;
+        }
+
+        /* --- SYNCED TIMER CARD --- */
+        .focus-sync-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        .timer-display {
+            font-size: 5rem;
+            font-weight: 800;
+            font-family: 'Courier New', Courier, monospace;
+            text-shadow: var(--glow);
+            margin: 15px 0;
+            letter-spacing: -2px;
+            transition: 0.5s;
+        }
+
+        .status-pill {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            background: rgba(0,0,0,0.3);
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: var(--subtext);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .btn-suite {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 15px 35px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn-suite:hover {
+            box-shadow: var(--glow);
+            transform: scale(1.05);
+        }
+
+        h2 { font-size: 1rem; color: var(--subtext); letter-spacing: 2px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">STUDYVAULT</div>
+            <div style="font-size: 0.8rem; color: var(--subtext);">WELCOME BACK</div>
+        </header>
+
+        <div class="subjects-grid">
+            <div class="subject-card">
+                <h3>Mathematics</h3>
+                <p style="font-size: 0.8rem; opacity: 0.6;">Calculus & Algebra</p>
+            </div>
+            <div class="subject-card">
+                <h3>Physics</h3>
+                <p style="font-size: 0.8rem; opacity: 0.6;">Quantum Mechanics</p>
+            </div>
+            <div class="subject-card">
+                <h3>Computer Science</h3>
+                <p style="font-size: 0.8rem; opacity: 0.6;">Data Structures</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="focus-sync-card">
+            <div class="status-pill" id="statusPill">INACTIVE</div>
+            <div class="timer-display" id="mainTimerDisplay">00:00</div>
+            <p id="timerMessage" style="color: var(--subtext); font-size: 0.9rem;">Start a session in the Focus Suite to track here.</p>
+            
+            <a href="timer.html" class="btn-suite">Enter Focus Suite →</a>
+        </div>
+    </div>
+
+    <script>
+        // GLOBAL TIMER SYNC LOGIC
+        function syncDashboardTimer() {
+            const display = document.getElementById('mainTimerDisplay');
+            const statusPill = document.getElementById('statusPill');
+            const message = document.getElementById('timerMessage');
+            
+            setInterval(() => {
+                const expiry = localStorage.getItem('timerExpiry');
+                const isRunning = localStorage.getItem('timerRunning') === 'true';
+
+                // If nothing is running
+                if (!isRunning || !expiry) {
+                    display.textContent = "00:00";
+                    display.style.opacity = "0.2";
+                    statusPill.textContent = "INACTIVE";
+                    statusPill.style.color = "var(--subtext)";
+                    message.textContent = "Start a session in the Focus Suite to track here.";
+                    return;
+                }
+
+                const now = Date.now();
+                const diff = Math.max(0, Math.floor((expiry - now) / 1000));
+
+                // If time ran out while we were away
+                if (diff <= 0) {
+                    display.textContent = "00:00";
+                    display.style.opacity = "0.2";
+                    statusPill.textContent = "FINISHED";
+                    statusPill.style.color = "#ff4d4d";
+                    message.textContent = "Session complete! Time for a break.";
+                    localStorage.setItem('timerRunning', 'false');
+                } else {
+                    // Update the clock
+                    const m = Math.floor(diff / 60);
+                    const s = diff % 60;
+                    display.textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+                    
+                    // Update visual state
+                    display.style.opacity = "1";
+                    statusPill.textContent = "LIVE SESSION";
+                    statusPill.style.color = var(--primary);
+                    message.textContent = "Keep going, you're doing great!";
+                }
+            }, 500); // Check every half second for smoothness
+        }
+
+        window.onload = syncDashboardTimer;
+    </script>
+</body>
+</html>
