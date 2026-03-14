@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudyVault | Dashboard</title>
+    <title>StudyVault | Neon Mountains</title>
     <style>
         :root {
             --primary: #bc13fe; 
@@ -13,6 +13,12 @@
             --card-bg: rgba(255, 255, 255, 0.07); 
             --link-bg: rgba(255, 255, 255, 0.1);
             --glow: 0 0 15px rgba(188, 19, 254, 0.8);
+        }
+
+        [data-theme="dark"] {
+            --primary: #df16ff;
+            --card-bg: rgba(0, 0, 0, 0.5);
+            --link-bg: rgba(255, 255, 255, 0.05);
         }
 
         #starfield {
@@ -26,94 +32,258 @@
         body { 
             font-family: 'Segoe UI', sans-serif; 
             color: var(--text); 
-            margin: 0; padding: 20px; 
+            margin: 0; 
+            padding: 20px; 
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), var(--bg-image);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            transition: all 0.4s ease;
             overflow-x: hidden;
         }
 
+        /* --- FLASH LOGO TOP LEFT --- */
         .logo-box {
-            position: fixed; top: 25px; left: 25px; z-index: 2000;
-            display: flex; align-items: center; gap: 10px;
-            cursor: pointer; text-decoration: none;
-            background: rgba(0,0,0,0.3); padding: 8px 15px;
-            border-radius: 50px; backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            text-decoration: none;
         }
 
-        .flash-icon { font-size: 1.5rem; text-shadow: var(--glow); }
-        .logo-text { font-weight: 800; letter-spacing: 1px; font-size: 1rem; color: white; text-transform: uppercase; }
+        .flash-icon {
+            font-size: 1.8rem;
+            text-shadow: var(--glow);
+            filter: drop-shadow(0 0 5px var(--primary));
+            transition: transform 0.3s ease;
+        }
 
-        .container { max-width: 1100px; margin: 0 auto; position: relative; z-index: 10; }
+        .logo-box:hover .flash-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
 
-        header { text-align: center; padding: 100px 0 20px 0; }
-        h1 { margin: 0; font-size: 3.5rem; color: var(--primary); text-transform: uppercase; letter-spacing: 5px; text-shadow: var(--glow); }
+        .logo-text {
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            color: white;
+            text-transform: uppercase;
+        }
 
-        .search-wrapper { margin: 30px auto; max-width: 500px; }
+        .container { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+
+        header { text-align: center; padding: 60px 0 20px 0; }
+        
+        h1 { 
+            margin: 0; 
+            font-size: 3.5rem; 
+            color: var(--primary); 
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: var(--glow), 0 0 30px rgba(188, 19, 254, 0.4);
+        }
+
+        .search-wrapper {
+            margin: 30px auto;
+            max-width: 500px;
+        }
+
         #subjectSearch {
-            width: 100%; padding: 15px 25px; border-radius: 50px;
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 50px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px);
-            color: white; font-size: 1.1rem; outline: none; text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            text-align: center;
         }
 
-        .subject-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .subject-card { 
-            background: var(--card-bg); backdrop-filter: blur(15px); padding: 25px; border-radius: 20px; 
-            border: 1px solid rgba(255, 255, 255, 0.15); transition: 0.3s;
+        #subjectSearch:focus {
+            border-color: var(--primary);
+            box-shadow: var(--glow);
         }
+
+        #noResults {
+            display: none;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--subtext);
+            margin-top: 50px;
+            padding: 40px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-toggle {
+            position: fixed; top: 25px; right: 25px;
+            background: var(--primary); color: white;
+            border: none; padding: 10px 20px; border-radius: 30px;
+            cursor: pointer; font-weight: bold;
+            box-shadow: var(--glow); z-index: 1000;
+            font-size: 0.9rem;
+        }
+
+        .subject-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px; 
+            margin-top: 20px;
+        }
+
+        .subject-card { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(15px);
+            padding: 25px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+        }
+
         .subject-card.hidden { display: none; }
-        .subject-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+
+        .subject-card:hover { 
+            transform: translateY(-10px); 
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+        }
 
         .subject-card h2 { 
-            margin-top: 0; color: var(--primary); font-size: 1.4rem; padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center;
+            margin-top: 0; color: var(--primary); 
+            font-size: 1.4rem; text-shadow: var(--glow);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            padding-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .subject-code { font-size: 0.8rem; background: rgba(188, 19, 254, 0.2); padding: 4px 10px; border-radius: 8px; border: 1px solid var(--primary); }
+        .subject-code {
+            font-size: 0.85rem;
+            background: rgba(188, 19, 254, 0.15);
+            padding: 4px 10px;
+            border-radius: 8px;
+            color: #fff;
+            border: 1px solid var(--primary);
+        }
 
         .links { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+        
         .links a { 
-            text-decoration: none; color: white; background: var(--link-bg); padding: 12px 15px; border-radius: 10px; 
-            font-weight: 500; display: flex; justify-content: space-between; transition: 0.3s;
+            text-decoration: none; color: white; 
+            background: var(--link-bg); 
+            padding: 12px 15px; border-radius: 10px; 
+            font-weight: 500; display: flex; justify-content: space-between;
+            transition: 0.3s;
         }
-        .links a:hover { background: var(--primary); box-shadow: var(--glow); color: black; }
 
-        #noResults { display: none; text-align: center; padding: 40px; color: var(--subtext); }
+        .links a:hover { background: var(--primary); box-shadow: var(--glow); }
 
         footer { text-align: center; margin-top: 60px; padding-bottom: 40px; }
-        .scrolling-banner { width: 100%; background: var(--primary); padding: 15px 0; overflow: hidden; border-radius: 12px; display: flex; }
-        .scrolling-text { display: inline-block; white-space: nowrap; font-weight: 800; text-transform: uppercase; letter-spacing: 5px; color: white; animation: marquee 20s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .scrolling-banner {
+            width: 100%; background: var(--primary); padding: 15px 0;
+            overflow: hidden; border-radius: 12px; display: flex;
+        }
+
+        .scrolling-text {
+            display: inline-block; white-space: nowrap; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 5px; color: white;
+            animation: marquee 20s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } 
+        }
     </style>
 </head>
 <body>
 
 <canvas id="starfield"></canvas>
 
-<div class="logo-box" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+<div class="logo-box">
     <span class="flash-icon">⚡</span>
     <span class="logo-text">StudyVault</span>
 </div>
+
+<button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
 
 <div class="container">
     <header>
         <h1>StudyVault</h1>
         <div class="search-wrapper">
-            <input type="text" id="subjectSearch" placeholder="Search by name or code..." onkeyup="filterSubjects()">
+            <input type="text" id="subjectSearch" placeholder="Search by name or code (e.g. 5054)..." onkeyup="filterSubjects()">
         </div>
     </header>
 
-    <div id="noResults"><p>No subjects found.</p></div>
+    <div id="noResults">
+        <span style="font-size: 3rem;">🕵️‍♂️</span>
+        <p>No subjects found. Try searching for a different code!</p>
+    </div>
 
     <div class="subject-grid" id="subjectGrid">
         <div class="subject-card">
+            <h2>English <span class="subject-code">1123</span></h2>
+            <div class="links">
+                <a href="#">Notes <span>📖</span></a>
+                <a href="#">Past Papers <span>📄</span></a>
+                <a href="#">Books <span>📚</span></a>
+            </div>
+        </div>
+
+        <div class="subject-card">
+            <h2>Pak Studies <span class="subject-code">2059</span></h2>
+            <div class="links">
+                <a href="#">Notes <span>📖</span></a>
+                <a href="#">Past Papers <span>📄</span></a>
+                <a href="#">Books <span>📚</span></a>
+            </div>
+        </div>
+
+        <div class="subject-card">
+            <h2>Islamiat <span class="subject-code">2058</span></h2>
+            <div class="links">
+                <a href="#">Notes <span>📖</span></a>
+                <a href="#">Past Papers <span>📄</span></a>
+                <a href="#">Books <span>📚</span></a>
+            </div>
+        </div>
+
+        <div class="subject-card">
+            <h2>Mathematics <span class="subject-code">4024</span></h2>
+            <div class="links">
+                <a href="#">Notes <span>📖</span></a>
+                <a href="#">Past Papers <span>📄</span></a>
+                <a href="#">Books <span>📚</span></a>
+            </div>
+        </div>
+
+        <div class="subject-card">
             <h2>Biology <span class="subject-code">5090</span></h2>
             <div class="links">
-                <a href="biology-notes.html">Notes <span>📖</span></a>
+                <a href="#">Notes <span>📖</span></a>
+                <a href="#">Past Papers <span>📄</span></a>
+                <a href="#">Books <span>📚</span></a>
+            </div>
+        </div>
+
+        <div class="subject-card">
+            <h2>Chemistry <span class="subject-code">5070</span></h2>
+            <div class="links">
+                <a href="#">Notes <span>📖</span></a>
                 <a href="#">Past Papers <span>📄</span></a>
                 <a href="#">Books <span>📚</span></a>
             </div>
@@ -131,7 +301,12 @@
 
     <footer>
         <div class="scrolling-banner">
-            <div class="scrolling-text">FREENOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp; FREENOTES AND RESOURCES</div>
+            <div class="scrolling-text">
+                FREENOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp; 
+                FREENOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp;
+                FREENOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp;
+                FREENOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp;
+            </div>
         </div>
     </footer>
 </div>
@@ -142,6 +317,7 @@
         let cards = document.getElementsByClassName('subject-card');
         let noResults = document.getElementById('noResults');
         let visibleCount = 0;
+
         for (let i = 0; i < cards.length; i++) {
             let titleText = cards[i].getElementsByTagName('h2')[0].innerText.toLowerCase();
             if (titleText.includes(input)) {
@@ -154,32 +330,57 @@
         noResults.style.display = (visibleCount === 0) ? 'block' : 'none';
     }
 
+    function toggleTheme() {
+        const body = document.documentElement;
+        const btn = document.getElementById('themeBtn');
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            btn.innerHTML = "🌙 Dark Mode";
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            btn.innerHTML = "☀️ Light Mode";
+        }
+    }
+
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
     let width, height, stars = [];
+    const numStars = 400;
+
     function init() {
         width = window.innerWidth; height = window.innerHeight;
         canvas.width = width; canvas.height = height;
         stars = [];
-        for (let i = 0; i < 400; i++) {
-            stars.push({ x: Math.random() * width - width/2, y: Math.random() * height - height/2, z: Math.random() * width, opacity: Math.random() });
+        for (let i = 0; i < numStars; i++) {
+            stars.push({
+                x: Math.random() * width - width/2,
+                y: Math.random() * height - height/2,
+                z: Math.random() * width,
+                opacity: Math.random()
+            });
         }
     }
+
     function draw() {
         ctx.clearRect(0, 0, width, height);
-        for (let i = 0; i < 400; i++) {
-            let star = stars[i]; star.z -= 1.2;
+        for (let i = 0; i < numStars; i++) {
+            let star = stars[i];
+            star.z -= 1.2;
             if (star.z <= 0) star.z = width;
             const sx = (star.x / star.z) * (width / 2) + width / 2;
             const sy = (star.y / star.z) * (height / 2) + height / 2;
             const size = (1 - star.z / width) * 2.5;
-            ctx.beginPath(); ctx.fillStyle = `rgba(188, 19, 254, ${star.opacity})`;
-            ctx.arc(sx, sy, size, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(188, 19, 254, ${star.opacity})`;
+            ctx.arc(sx, sy, size, 0, Math.PI * 2);
+            ctx.fill();
         }
         requestAnimationFrame(draw);
     }
+
     window.addEventListener('resize', init);
     init(); draw();
 </script>
+
 </body>
 </html>
