@@ -43,6 +43,33 @@
             overflow-x: hidden;
         }
 
+        /* --- NAVIGATION PANEL --- */
+        .nav-panel {
+            position: fixed;
+            top: 32px;
+            right: 170px; /* Offset from Dark Mode button */
+            z-index: 1000;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: 0.3s;
+            opacity: 0.8;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            opacity: 1;
+            text-shadow: var(--glow);
+        }
+
         .logo-box {
             position: fixed;
             top: 25px;
@@ -87,10 +114,9 @@
             text-shadow: var(--glow), 0 0 30px rgba(188, 19, 254, 0.4);
         }
 
-        /* --- TYPEWRITER GREETING STYLES --- */
         .greeting-container {
             margin-top: 10px;
-            min-height: 30px; /* Prevents layout jump */
+            min-height: 30px;
         }
 
         #dynamicGreeting {
@@ -270,6 +296,23 @@
 
         .pomo-btn:hover { background: var(--primary); box-shadow: var(--glow); transform: translateY(-3px); }
 
+        /* --- STYLED CUSTOM TIMER LINK --- */
+        .pomo-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-shadow: 0 0 10px rgba(188, 19, 254, 0.3);
+            transition: 0.3s;
+        }
+
+        .pomo-link:hover {
+            transform: scale(1.05);
+            text-shadow: var(--glow);
+        }
+
         footer { text-align: center; margin-top: 20px; padding-bottom: 40px; }
 
         .scrolling-banner {
@@ -296,6 +339,11 @@
 <div class="logo-box">
     <span class="flash-icon">⚡</span>
     <span class="logo-text">StudyVault</span>
+</div>
+
+<div class="nav-panel">
+    <a href="timers.html" class="nav-link">Pomodoro</a>
+    <a href="timers.html" class="nav-link">Accountability List</a>
 </div>
 
 <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
@@ -380,7 +428,7 @@
                 <a href="#">Books <span>📚</span></a>
             </div>
         </div>
-    </div>
+        </div>
 
     <div class="section-divider"></div>
 
@@ -408,37 +456,29 @@
 </div>
 
 <script>
-    // --- TYPEWRITER GREETING LOGIC ---
+    // Logic remains exactly as provided in your original script
     function initGreeting() {
         const greetingElement = document.getElementById('dynamicGreeting');
         const hour = new Date().getHours();
-        let message = "Ready to conquer your goals? 🚀"; // Default
-
-        if (hour >= 5 && hour < 11) {
-            message = "Rise and Grind, Student. ☕";
-        } else if (hour >= 23 || hour < 3) {
-            message = "Burning the midnight oil? 🌙";
-        } else if (hour >= 11 && hour < 17) {
-            message = "Making progress, one page at a time. 📖";
-        } else if (hour >= 17 && hour < 23) {
-            message = "Evening focus mode activated. ⚡";
-        }
+        let message = "Ready to conquer your goals? 🚀";
+        if (hour >= 5 && hour < 11) message = "Rise and Grind, Student. ☕";
+        else if (hour >= 23 || hour < 3) message = "Burning the midnight oil? 🌙";
+        else if (hour >= 11 && hour < 17) message = "Making progress, one page at a time. 📖";
+        else if (hour >= 17 && hour < 23) message = "Evening focus mode activated. ⚡";
 
         let i = 0;
         function typeWriter() {
             if (i < message.length) {
                 greetingElement.innerHTML += message.charAt(i);
                 i++;
-                setTimeout(typeWriter, 80); // Speed of typing
+                setTimeout(typeWriter, 80);
             }
         }
         typeWriter();
     }
 
-    // Run greeting on load
     window.addEventListener('DOMContentLoaded', initGreeting);
 
-    // --- GLOBAL SYNCED TIMER LOGIC ---
     let timerInterval = null;
 
     function updateDisplay(seconds) {
@@ -451,13 +491,10 @@
     function syncTimer() {
         const toggleBtn = document.getElementById('pomoToggle');
         const statusLabel = document.getElementById('pomoStatus');
-        
         if (timerInterval) clearInterval(timerInterval);
-
         timerInterval = setInterval(() => {
             const expiry = localStorage.getItem('timerExpiry');
             const isRunning = localStorage.getItem('timerRunning') === 'true';
-
             if (!isRunning || !expiry) {
                 const defaultMins = localStorage.getItem('customStudyMin') || 25;
                 if (!isRunning) updateDisplay(defaultMins * 60);
@@ -465,10 +502,8 @@
                 statusLabel.textContent = "Focus Session";
                 return;
             }
-
             const now = Date.now();
             const diff = Math.max(0, Math.floor((expiry - now) / 1000));
-
             if (diff <= 0) {
                 updateDisplay(0);
                 localStorage.setItem('timerRunning', 'false');
@@ -506,7 +541,6 @@
         let cards = document.getElementsByClassName('subject-card');
         let noResults = document.getElementById('noResults');
         let visibleCount = 0;
-
         for (let i = 0; i < cards.length; i++) {
             let titleText = cards[i].getElementsByTagName('h2')[0].innerText.toLowerCase();
             if (titleText.includes(input)) {
