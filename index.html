@@ -49,7 +49,7 @@
         .nav-panel {
             position: fixed;
             top: 34px;
-            right: 170px; /* Adjusted to prevent overlap with theme button */
+            right: 170px; 
             z-index: 1000;
             display: flex;
             gap: 20px;
@@ -320,7 +320,7 @@
 <div class="nav-panel">
     <a href="timers.html" class="nav-link">Pomodoro</a>
     <a href="timers.html" class="nav-link">Accountability</a>
-    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="https://forms.gle/iPRKKd7RhLfhzDoX7" class="nav-link" target="_blank">Contact</a>
 </div>
 
 <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
@@ -541,7 +541,6 @@
         }
     }
 
-    // --- STARFIELD ---
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
     let width, height, stars = [];
