@@ -260,8 +260,7 @@
                 <button class="btn" onclick="addTask()" style="width: auto; padding: 0 25px;">ADD</button>
             </div>
 
-            <div class="list-container" id="currentTasks">
-                </div>
+            <div class="list-container" id="currentTasks"></div>
 
             <div class="section-title" style="margin-top: 40px; font-size: 0.8rem; opacity: 0.6;">📜 PREVIOUS 7 DAYS</div>
             <div id="historyContainer"></div>
@@ -271,7 +270,13 @@
                 <div id="trashContainer" style="padding: 15px; font-size: 0.8rem; opacity: 0.5;"></div>
             </details>
         </div>
+    </div>
 
+    <div style="max-width: 1100px; margin: 30px auto 0;">
+        <div class="glass-card" style="text-align: center; padding: 25px;">
+            <p id="dailyQuote" style="font-style: italic; color: var(--subtext); margin: 0; font-size: 1.1rem; line-height: 1.6;"></p>
+            <p id="quoteAuthor" style="color: var(--primary); font-size: 0.8rem; font-weight: 800; margin-top: 15px; text-transform: uppercase; letter-spacing: 2px;"></p>
+        </div>
     </div>
 
     <script>
@@ -281,6 +286,30 @@
             history: {},
             trash: []
         };
+
+        const quotes = [
+            { text: "Discipline is choosing between what you want now and what you want most.", author: "Abraham Lincoln" },
+            { text: "The secret of getting ahead is getting started.", author: "Mark Twain" },
+            { text: "It always seems impossible until it's done.", author: "Nelson Mandela" },
+            { text: "Focus on being productive instead of busy.", author: "Tim Ferriss" },
+            { text: "Success is the sum of small efforts, repeated day-in and day-out.", author: "Robert Collier" },
+            { text: "Don't stop until you're proud.", author: "Anonymous" },
+            { text: "Your talent determines what you can do. Your motivation determines how much you are willing to do.", author: "Lou Holtz" },
+            { text: "The only place where success comes before work is in the dictionary.", author: "Vidal Sassoon" },
+            { text: "Great things are done by a series of small things brought together.", author: "Vincent Van Gogh" }
+        ];
+
+        // --- QUOTE LOGIC ---
+        function displayDailyQuote() {
+            const now = new Date();
+            // Create a seed based on the date so it only changes once a day
+            const dateSeed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+            const quoteIndex = dateSeed % quotes.length;
+            const daily = quotes[quoteIndex];
+
+            document.getElementById('dailyQuote').textContent = `"${daily.text}"`;
+            document.getElementById('quoteAuthor').textContent = `— ${daily.author}`;
+        }
 
         // --- TIMER LOGIC ---
         let timeLeft = 25 * 60;
@@ -297,7 +326,6 @@
         function toggleTimer() {
             const btn = document.getElementById('pomoBtn');
             if (!isRunning) {
-                // If it's a fresh start, grab input values
                 if (timeLeft === 25 * 60) {
                     timeLeft = document.getElementById('studyMin').value * 60;
                 }
@@ -370,7 +398,6 @@
             container.innerHTML = "";
             const today = new Date().toLocaleDateString();
 
-            // Filter out old tasks and move to history
             vaultData.tasks = vaultData.tasks.filter(t => {
                 if (t.date !== today) {
                     if (!vaultData.history[t.date]) vaultData.history[t.date] = [];
@@ -397,7 +424,6 @@
             const now = Date.now();
 
             dates.forEach(date => {
-                // Remove if older than 7 days
                 const diff = (now - new Date(date)) / (1000 * 60 * 60 * 24);
                 if (diff > 7) { delete vaultData.history[date]; return; }
 
@@ -413,14 +439,17 @@
         function renderTrash() {
             const container = document.getElementById('trashContainer');
             const now = Date.now();
-            // Purge trash older than 30 days
             vaultData.trash = vaultData.trash.filter(t => (now - t.deletedAt) < (30 * 24 * 60 * 60 * 1000));
             container.innerHTML = vaultData.trash.map(t => `<div style="margin-bottom:5px;">[X] ${t.text}</div>`).join('');
             if (vaultData.trash.length === 0) container.innerHTML = "Trash is empty.";
         }
 
         // Initialize on load
-        renderTasks(); renderHistory(); renderTrash(); updateDisplay();
+        renderTasks(); 
+        renderHistory(); 
+        renderTrash(); 
+        updateDisplay();
+        displayDailyQuote();
     </script>
 </body>
 </html>
