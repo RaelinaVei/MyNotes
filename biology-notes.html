@@ -27,6 +27,17 @@
         header { text-align: center; padding: 40px 0; }
         h1 { font-size: 3rem; color: var(--primary); text-transform: uppercase; text-shadow: var(--glow); margin: 0; }
         
+        .section-title {
+            margin: 40px 0 20px 0;
+            font-size: 1.5rem;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+            text-shadow: 0 0 10px rgba(188, 19, 254, 0.4);
+        }
+
         .back-btn { 
             text-decoration: none; color: white; background: rgba(0,0,0,0.3); 
             padding: 10px 20px; border-radius: 30px; border: 1px solid var(--primary);
@@ -34,7 +45,12 @@
         }
         .back-btn:hover { background: var(--primary); color: black; box-shadow: var(--glow); }
 
-        .teacher-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .teacher-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+            margin-bottom: 50px;
+        }
 
         .teacher-card {
             background: var(--card-bg); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1);
@@ -48,12 +64,13 @@
             font-size: 1.8rem; font-weight: bold; box-shadow: var(--glow);
         }
 
-        .teacher-card h2 { margin: 10px 0; font-size: 1.5rem; color: var(--primary); }
+        .teacher-card h2 { margin: 10px 0; font-size: 1.3rem; color: var(--primary); }
         .teacher-card p { font-size: 0.9rem; color: var(--subtext); line-height: 1.6; margin-bottom: 20px; }
 
         .access-btn {
             width: 100%; text-decoration: none; color: white; background: rgba(188, 19, 254, 0.2);
             border: 1px solid var(--primary); padding: 12px; border-radius: 12px; display: block; font-weight: bold; transition: 0.3s;
+            box-sizing: border-box;
         }
         .access-btn:hover { background: var(--primary); color: black; box-shadow: var(--glow); }
     </style>
@@ -68,18 +85,60 @@
         <h1>Biology Vault 🧬</h1>
     </header>
 
+    <div class="section-title">Theory & MCQs (P1 & P2)</div>
+    <div class="teacher-grid">
+        <div class="teacher-card">
+            <div class="avatar">T</div>
+            <h2>P1 & P2 Full Notes</h2>
+            <p>Complete theoretical syllabus coverage for Paper 1 (MCQs) and Paper 2 (Theory).</p>
+            <a href="#" class="access-btn">Open Resources</a>
+        </div>
+    </div>
+
+    <div class="section-title">Alternative to Practical (P4)</div>
     <div class="teacher-grid">
         <div class="teacher-card">
             <div class="avatar">L</div>
-            <h2>Dr. Lorem</h2>
-            <p>Comprehensive handwritten notes covering the entire O-Level Biology syllabus.</p>
-            <a href="#" class="access-btn">Access Notes</a>
+            <h2>Lab & Practical Guide</h2>
+            <p>Focusing on experimental design, data analysis, and common P4 test procedures.</p>
+            <a href="#" class="access-btn">Open P4 Vault</a>
         </div>
+    </div>
+
+    <div class="section-title">Other Notes</div>
+    <div class="teacher-grid">
+        <div class="teacher-card">
+            <div class="avatar">S</div>
+            <h2>Quick Summary Sheets</h2>
+            <p>Last-minute revision cards and high-yield biological definitions.</p>
+            <a href="#" class="access-btn">View Summaries</a>
         </div>
+        <div class="teacher-card">
+            <div class="avatar">D</div>
+            <h2>Diagram Booklet</h2>
+            <p>All essential diagrams for human and plant biology annotated for exams.</p>
+            <a href="#" class="access-btn">View Diagrams</a>
+        </div>
+    </div>
+
+    <div class="section-title">Practice Questions</div>
+    <div class="teacher-grid">
+        <div class="teacher-card">
+            <div class="avatar">Q</div>
+            <h2>Topical Questions</h2>
+            <p>Practice questions categorized by chapter with detailed mark schemes.</p>
+            <a href="#" class="access-btn">Start Practice</a>
+        </div>
+        <div class="teacher-card">
+            <div class="avatar">M</div>
+            <h2>Mock Exams</h2>
+            <p>Full-length papers designed to test your timing and overall knowledge.</p>
+            <a href="#" class="access-btn">Take a Mock</a>
+        </div>
+    </div>
 </div>
 
 <script>
-    // Copy the starfield script from index.html here to keep the background moving
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
     let width, height, stars = [];
