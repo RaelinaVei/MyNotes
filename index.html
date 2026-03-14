@@ -190,7 +190,77 @@
 
         .links a:hover { background: var(--primary); box-shadow: var(--glow); }
 
-        footer { text-align: center; margin-top: 60px; padding-bottom: 40px; }
+        /* Pomodoro Section */
+        .pomodoro-container {
+            max-width: 400px;
+            margin: 60px auto 40px auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .pomo-label {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.75rem;
+            color: var(--subtext);
+            margin-bottom: 5px;
+        }
+
+        .pomo-time {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-shadow: var(--glow);
+            margin: 10px 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .pomo-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .pomo-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .pomo-btn:hover {
+            background: var(--primary);
+            box-shadow: var(--glow);
+            transform: scale(1.05);
+        }
+
+        .pomo-link {
+            display: block;
+            margin-top: 20px;
+            color: var(--subtext);
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .pomo-link:hover {
+            opacity: 1;
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        footer { text-align: center; margin-top: 20px; padding-bottom: 40px; }
 
         .scrolling-banner {
             width: 100%; background: var(--primary); padding: 15px 0;
@@ -298,20 +368,71 @@
         </div>
     </div>
 
+    <div class="pomodoro-container">
+        <div class="pomo-label" id="pomoStatus">Focus Session</div>
+        <div class="pomo-time" id="timerDisplay">25:00</div>
+        <div class="pomo-controls">
+            <button class="pomo-btn" onclick="toggleTimer()" id="pomoToggle">Start</button>
+            <button class="pomo-btn" onclick="resetTimer()">Reset</button>
+        </div>
+        <a href="timers.html" class="pomo-link">⚙️ Set Custom Timers & Alarms</a>
+    </div>
+
     <footer>
         <div class="scrolling-banner">
             <div class="scrolling-text">
-                FREENOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp; 
-                FREENOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp;
-                FREENOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp;
-                FREENOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp;
+                FREE NOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp; 
+                FREE NOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp; 
+                FREE NOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp; 
+                FREE NOTES AND RESOURCES &nbsp;&nbsp; • &nbsp;&nbsp; 
             </div>
         </div>
     </footer>
 </div>
 
 <script>
-    // Search Functionality
+    // --- Pomodoro Logic ---
+    let timeLeft = 25 * 60;
+    let timerId = null;
+    let isRunning = false;
+
+    const display = document.getElementById('timerDisplay');
+    const toggleBtn = document.getElementById('pomoToggle');
+
+    function updateDisplay() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        display.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    function toggleTimer() {
+        if (isRunning) {
+            clearInterval(timerId);
+            toggleBtn.textContent = "Start";
+        } else {
+            timerId = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timerId);
+                    alert("Focus session complete! Time for a break.");
+                    resetTimer();
+                }
+            }, 1000);
+            toggleBtn.textContent = "Pause";
+        }
+        isRunning = !isRunning;
+    }
+
+    function resetTimer() {
+        clearInterval(timerId);
+        timeLeft = 25 * 60;
+        isRunning = false;
+        updateDisplay();
+        toggleBtn.textContent = "Start";
+    }
+
+    // --- Search Functionality ---
     function filterSubjects() {
         let input = document.getElementById('subjectSearch').value.toLowerCase();
         let cards = document.getElementsByClassName('subject-card');
@@ -330,7 +451,7 @@
         noResults.style.display = (visibleCount === 0) ? 'block' : 'none';
     }
 
-    // Theme Toggle Functionality
+    // --- Theme Toggle Functionality ---
     function toggleTheme() {
         const body = document.documentElement;
         const btn = document.getElementById('themeBtn');
@@ -343,7 +464,7 @@
         }
     }
 
-    // Starfield Animation
+    // --- Starfield Animation ---
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
     let width, height, stars = [];
