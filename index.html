@@ -21,14 +21,44 @@
             --link-bg: rgba(255, 255, 255, 0.05);
         }
 
-        /* LIVE BACKGROUND CANVAS */
+        /* --- MOVING RECTANGLE STRIP CSS --- */
+        .moving-banner-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 10px 0;
+            z-index: 10;
+        }
+
+        .neon-rect {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 10px 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px; /* Rounded pill shape */
+            box-shadow: var(--glow), 0 0 30px rgba(188, 19, 254, 0.4);
+            white-space: nowrap;
+            
+            /* Animation: Moves back and forth */
+            animation: slideSideToSide 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes slideSideToSide {
+            from { transform: translateX(0vw); }
+            to { transform: translateX(calc(100vw - 300px)); } /* Adjust 300px based on label width */
+        }
+        /* ---------------------------------- */
+
         #starfield {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Behind the content */
+            z-index: -1;
             pointer-events: none;
         }
 
@@ -43,12 +73,12 @@
             background-position: center;
             background-attachment: fixed;
             transition: all 0.4s ease;
-            overflow-x: hidden; /* Prevents side scrolling from stars */
+            overflow-x: hidden;
         }
 
         .container { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
 
-        header { text-align: center; padding: 60px 0 40px 0; }
+        header { text-align: center; padding: 40px 0 40px 0; }
         
         h1 { 
             margin: 0; 
@@ -124,6 +154,12 @@
 <body>
 
 <canvas id="starfield"></canvas>
+
+<div class="moving-banner-container">
+    <div class="neon-rect">
+        freenotes and resources
+    </div>
+</div>
 
 <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
 
@@ -204,7 +240,6 @@
 </div>
 
 <script>
-    // THEME TOGGLE
     function toggleTheme() {
         const body = document.documentElement;
         const btn = document.getElementById('themeBtn');
@@ -217,12 +252,10 @@
         }
     }
 
-    // STARFIELD ENGINE
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
-
     let width, height, stars = [];
-    const numStars = 400; // Total count of stars
+    const numStars = 400;
 
     function init() {
         width = window.innerWidth;
@@ -241,28 +274,16 @@
     }
 
     function draw() {
-        // Clear canvas but let the background image show through
         ctx.clearRect(0, 0, width, height);
-
         for (let i = 0; i < numStars; i++) {
             let star = stars[i];
-            
-            // Move star closer
-            star.z -= 1.2; // Adjust speed here
-
-            // If star passes viewer, reset it to the back
-            if (star.z <= 0) {
-                star.z = width;
-            }
-
-            // Project 3D to 2D
+            star.z -= 1.2;
+            if (star.z <= 0) star.z = width;
             const sx = (star.x / star.z) * (width / 2) + width / 2;
             const sy = (star.y / star.z) * (height / 2) + height / 2;
             const size = (1 - star.z / width) * 2.5;
-
-            // Draw the star
             ctx.beginPath();
-            ctx.fillStyle = `rgba(188, 19, 254, ${star.opacity})`; // Neon purple stars
+            ctx.fillStyle = `rgba(188, 19, 254, ${star.opacity})`;
             ctx.arc(sx, sy, size, 0, Math.PI * 2);
             ctx.fill();
         }
@@ -273,6 +294,5 @@
     init();
     draw();
 </script>
-
 </body>
 </html>
