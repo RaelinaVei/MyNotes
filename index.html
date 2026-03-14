@@ -21,37 +21,37 @@
             --link-bg: rgba(255, 255, 255, 0.05);
         }
 
-        /* --- MOVING RECTANGLE STRIP CSS --- */
-        .moving-banner-container {
+        /* --- FIXED FOOTER SCROLLING BAR --- */
+        .scrolling-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            overflow: hidden;
-            position: relative;
-            padding: 10px 0;
-            z-index: 10;
-        }
-
-        .neon-rect {
-            display: inline-block;
             background: var(--primary);
-            color: white;
-            padding: 10px 30px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 50px; /* Rounded pill shape */
-            box-shadow: var(--glow), 0 0 30px rgba(188, 19, 254, 0.4);
+            box-shadow: 0 -5px 25px rgba(188, 19, 254, 0.6);
+            padding: 15px 0;
+            z-index: 2000;
+            overflow: hidden;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .scrolling-text {
+            display: inline-block;
             white-space: nowrap;
-            
-            /* Animation: Moves back and forth */
-            animation: slideSideToSide 10s ease-in-out infinite alternate;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: white;
+            font-size: 1.2rem;
+            animation: marquee 20s linear infinite;
         }
 
-        @keyframes slideSideToSide {
-            from { transform: translateX(0vw); }
-            to { transform: translateX(calc(100vw - 300px)); } /* Adjust 300px based on label width */
+        @keyframes marquee {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
         }
-        /* ---------------------------------- */
 
+        /* --- PAGE STYLES --- */
         #starfield {
             position: fixed;
             top: 0;
@@ -67,6 +67,7 @@
             color: var(--text); 
             margin: 0; 
             padding: 20px; 
+            padding-bottom: 100px; /* Space for the footer */
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), var(--bg-image);
             background-size: cover;
@@ -78,14 +79,11 @@
 
         .container { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
 
-        header { text-align: center; padding: 40px 0 40px 0; }
+        header { text-align: center; padding: 60px 0 40px 0; }
         
         h1 { 
-            margin: 0; 
-            font-size: 3.5rem; 
-            color: var(--primary); 
-            text-transform: uppercase;
-            letter-spacing: 4px;
+            margin: 0; font-size: 3.5rem; color: var(--primary); 
+            text-transform: uppercase; letter-spacing: 4px;
             text-shadow: var(--glow), 0 0 30px rgba(188, 19, 254, 0.4);
         }
 
@@ -109,8 +107,7 @@
             background: var(--card-bg); 
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            padding: 25px; 
-            border-radius: 20px; 
+            padding: 25px; border-radius: 20px; 
             border: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
             transition: all 0.3s ease;
@@ -120,7 +117,6 @@
             transform: translateY(-10px); 
             border-color: var(--primary);
             box-shadow: var(--glow);
-            background: rgba(188, 19, 254, 0.05);
         }
 
         .subject-card h2 { 
@@ -133,8 +129,7 @@
         .links { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
         
         .links a { 
-            text-decoration: none; color: white; 
-            background: var(--link-bg); 
+            text-decoration: none; color: white; background: var(--link-bg); 
             padding: 12px 15px; border-radius: 10px; 
             font-weight: 500; display: flex; justify-content: space-between;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -144,7 +139,6 @@
         .links a:hover { 
             background: var(--primary); 
             box-shadow: var(--glow);
-            transform: scale(1.02);
             color: #fff;
         }
 
@@ -154,12 +148,6 @@
 <body>
 
 <canvas id="starfield"></canvas>
-
-<div class="moving-banner-container">
-    <div class="neon-rect">
-        freenotes and resources
-    </div>
-</div>
 
 <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
 
@@ -239,6 +227,15 @@
     </footer>
 </div>
 
+<div class="scrolling-footer">
+    <div class="scrolling-text">
+        freenotes and resources &nbsp;&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;&nbsp; 
+        freenotes and resources &nbsp;&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;&nbsp;
+        freenotes and resources &nbsp;&nbsp;&nbsp;&nbsp; • &nbsp;&nbsp;&nbsp;&nbsp;
+        freenotes and resources
+    </div>
+</div>
+
 <script>
     function toggleTheme() {
         const body = document.documentElement;
@@ -294,5 +291,6 @@
     init();
     draw();
 </script>
+
 </body>
 </html>
