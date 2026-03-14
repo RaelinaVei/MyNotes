@@ -8,6 +8,7 @@
         :root {
             --primary: #bc13fe; 
             --accent-gold: #ffb400;
+            --accent-teal: #00f2ff; /* New color for AI tool */
             --text: #ffffff;
             --subtext: #cbd5e1;
             --bg-image: url('https://w0.peakpx.com/wallpaper/700/152/HD-wallpaper-mountains-in-dark-night-background-dark.jpg');
@@ -144,6 +145,30 @@
             color: #000 !important;
         }
 
+        /* Teal AI Card Style */
+        .ai-card {
+            border: 2px solid var(--accent-teal) !important;
+            background: rgba(0, 242, 255, 0.08) !important;
+        }
+        .ai-card:hover {
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.4) !important;
+            border-color: var(--accent-teal) !important;
+        }
+        .avatar-ai {
+            border-color: var(--accent-teal) !important;
+            color: var(--accent-teal) !important;
+            background: rgba(0, 242, 255, 0.1) !important;
+        }
+        .btn-ai {
+            background: rgba(0, 242, 255, 0.15) !important;
+            border-color: var(--accent-teal) !important;
+            color: var(--accent-teal) !important;
+        }
+        .btn-ai:hover {
+            background: var(--accent-teal) !important;
+            color: #000 !important;
+        }
+
         .teacher-card h2 { margin: 15px 0; font-size: 1.7rem; color: var(--primary); text-shadow: var(--glow); }
         .teacher-card p { font-size: 0.95rem; color: var(--subtext); line-height: 1.6; margin-bottom: 30px; }
 
@@ -186,6 +211,14 @@
             <p>Elevate your diction with these curated high-tier word alternatives.</p>
             <a href="https://drive.google.com/drive/folders/1DBGAR1pgEAFgcA9smQT1Ri87NK_25rK1?usp=drive_link" class="access-btn" target="_blank">Access</a>
         </div>
+
+        <div class="teacher-card ai-card">
+            <div class="avatar avatar-ai">AI</div>
+            <h2 style="color: var(--accent-teal); text-shadow: 0 0 10px rgba(0, 242, 255, 0.3);">English GPT</h2>
+            <p>AI-powered assistant for instant essay marking, grammar checks, and creative feedback.</p>
+            <a href="https://englishgpt.org/" class="access-btn btn-ai" target="_blank">Launch AI</a>
+        </div>
+
         <div class="teacher-card">
             <div class="avatar">R3</div>
             <h2>Idioms</h2>
