@@ -10,19 +10,18 @@
             --text: #ffffff;
             --subtext: #cbd5e1;
             --bg-image: url('https://w0.peakpx.com/wallpaper/700/152/HD-wallpaper-mountains-in-dark-night-background-dark.jpg');
-            --card-bg: rgba(255, 255, 255, 0.06); 
-            --accent-bg: rgba(188, 19, 254, 0.1);
-            --glow: 0 0 20px rgba(188, 19, 254, 0.6);
-            --warning: #fbbf24;
+            --card-bg: rgba(255, 255, 255, 0.07); 
+            --glow: 0 0 15px rgba(188, 19, 254, 0.5);
+            --yellow: #fbbf24;
         }
 
         [data-theme="dark"] {
             --primary: #df16ff;
-            --card-bg: rgba(0, 0, 0, 0.5);
+            --card-bg: rgba(0, 0, 0, 0.4);
         }
 
         body { 
-            font-family: 'Inter', 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             color: var(--text); 
             margin: 0; padding: 0; 
             min-height: 100vh;
@@ -30,7 +29,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            transition: 0.4s ease;
+            transition: all 0.4s ease;
             overflow-x: hidden;
         }
 
@@ -40,55 +39,48 @@
             z-index: -1; pointer-events: none;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; position: relative; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
 
-        /* Navigation */
-        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        header { text-align: center; padding: 40px 0; }
+        h1 { margin: 10px 0; font-size: 3rem; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; text-shadow: var(--glow); }
+        .subtitle { color: var(--subtext); font-size: 1rem; opacity: 0.8; }
+
+        .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .back-btn { 
-            text-decoration: none; color: white; background: rgba(255,255,255,0.1); 
-            padding: 10px 20px; border-radius: 50px; font-size: 0.9rem; 
-            border: 1px solid rgba(255,255,255,0.2); transition: 0.3s;
+            text-decoration: none; color: white; background: rgba(0,0,0,0.3); 
+            padding: 8px 20px; border-radius: 20px; font-size: 0.8rem; 
+            border: 1px solid rgba(255,255,255,0.3); transition: 0.3s;
         }
-        .back-btn:hover { border-color: var(--primary); box-shadow: var(--glow); background: var(--accent-bg); }
+        .back-btn:hover { border-color: var(--primary); box-shadow: var(--glow); }
 
-        /* Header */
-        header { text-align: center; margin-bottom: 60px; }
-        h1 { font-size: clamp(2.5rem, 5vw, 4rem); color: var(--primary); text-transform: uppercase; letter-spacing: 4px; text-shadow: var(--glow); margin: 10px 0; }
-        .subtitle { color: var(--subtext); font-size: 1.1rem; letter-spacing: 1px; }
-
-        /* Section Styling */
-        .section-title { 
-            font-size: 1.8rem; margin: 60px 0 25px; border-left: 4px solid var(--primary); 
-            padding-left: 15px; text-transform: uppercase; letter-spacing: 1px;
+        .theme-toggle {
+            background: var(--primary); color: white; border: none; 
+            padding: 10px 18px; border-radius: 30px; cursor: pointer; font-weight: bold;
         }
 
-        /* Yellow Box - Mega Folder */
-        .mega-box {
-            background: rgba(251, 191, 36, 0.1);
-            border: 2px solid var(--warning);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 40px;
-            box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
-        }
-        .mega-box h2 { color: var(--warning); margin-top: 0; }
-        .mega-box p { color: #ffe08a; margin-bottom: 20px; }
-
-        /* Grid Layouts */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+        .section-header {
+            margin: 50px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(188, 19, 254, 0.3);
+            color: var(--primary);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+        }
+
+        .card { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 25px; 
+            border-radius: 20px; 
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            padding: 25px;
             transition: 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -96,32 +88,27 @@
         }
 
         .card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--glow); }
-        .card h3 { margin-top: 0; color: var(--primary); font-size: 1.2rem; }
-        .card p { font-size: 0.85rem; color: var(--subtext); margin-bottom: 20px; line-height: 1.4; }
+        
+        /* The specific Yellow Box request */
+        .card.featured {
+            border: 2px solid var(--yellow);
+            background: rgba(251, 191, 36, 0.1);
+        }
+        .card.featured h3 { color: var(--yellow) !important; }
+        .card.featured .btn { background: var(--yellow); color: black; border: none; }
 
-        /* Buttons */
+        .card h3 { margin: 0 0 10px 0; font-size: 1.2rem; color: var(--primary); }
+        .card p { font-size: 0.9rem; color: var(--subtext); line-height: 1.4; margin-bottom: 20px; }
+
         .btn {
-            display: inline-block;
-            text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.3s;
-            text-align: center;
+            display: block; text-decoration: none; color: white;
+            background: rgba(188, 19, 254, 0.2); border: 1px solid var(--primary);
+            padding: 10px; border-radius: 10px; text-align: center;
+            font-weight: bold; font-size: 0.85rem; transition: 0.3s;
         }
-        .btn-primary { background: var(--primary); color: white; box-shadow: var(--glow); }
-        .btn-outline { border: 1px solid var(--primary); color: white; background: transparent; }
-        .btn-outline:hover { background: var(--primary); }
-        .btn-yellow { background: var(--warning); color: #000; font-weight: 800; }
-        .btn-yellow:hover { opacity: 0.9; box-shadow: 0 0 15px var(--warning); }
+        .btn:hover { background: var(--primary); box-shadow: var(--glow); }
 
-        footer { text-align: center; padding: 80px 0; color: var(--subtext); opacity: 0.6; font-size: 0.9rem; }
-        .theme-toggle {
-            background: var(--primary); color: white; border: none; 
-            padding: 10px 18px; border-radius: 30px; cursor: pointer; font-weight: bold;
-        }
-
+        footer { text-align: center; padding: 60px 0; color: var(--subtext); font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -129,138 +116,144 @@
 <canvas id="starfield"></canvas>
 
 <div class="container">
-    <nav class="top-nav">
-        <a href="index.html" class="back-btn">← Dashboard</a>
+    <div class="top-nav">
+        <a href="index.html" class="back-btn">← Back to Dashboard</a>
         <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
-    </nav>
+    </div>
 
     <header>
         <h1>Maths Vault 📐</h1>
-        <p class="subtitle">Notes, Practice, and Success Plans</p>
+        <p class="subtitle">Premium Resources for IGCSE & O-Level</p>
     </header>
 
-    <div class="mega-box">
-        <h2>🚀 Maths Mega Folder</h2>
-        <p>Curated by Haris Rehman. The ultimate all-in-one collection for top-tier results.</p>
-        <a href="https://drive.google.com/drive/folders/1yYLbtzKnaaSsgqE-15sKrHF7t3dFuG7I?usp=sharing" target="_blank" class="btn btn-yellow">Access Mega Folder</a>
-    </div>
-
-    <h2 class="section-title">Study Plans & Guides</h2>
+    <div class="section-header">⭐ Important Section</div>
     <div class="grid">
         <div class="card">
-            <div>
-                <h3>Learner Guide</h3>
-                <p>Official Cambridge breakdown of what to expect in the exam.</p>
-            </div>
-            <a href="https://drive.google.com/file/d/1JyhRcHECrjnM_RkFY8rD8q-kmsn_EKgO/view?usp=sharing" target="_blank" class="btn btn-primary">View PDF</a>
+            <h3>Learner Guide</h3>
+            <p>Official Cambridge guide to mastering the syllabus requirements.</p>
+            <a href="https://drive.google.com/file/d/1JyhRcHECrjnM_RkFY8rD8q-kmsn_EKgO/view?usp=sharing" target="_blank" class="btn">Open Guide</a>
         </div>
         <div class="card">
-            <div>
-                <h3>60 Day Plan</h3>
-                <p>Zainematics' structured roadmap for complete syllabus coverage.</p>
-            </div>
-            <a href="https://docs.google.com/spreadsheets/d/18xChgpA2EQDLKtF6M5R0Eav3sNLCI8LzFHDlGtecaYs/edit?usp=sharing" target="_blank" class="btn btn-outline">Open Plan</a>
+            <h3>IGCSE Checklist</h3>
+            <p>Topic-by-topic tracker to ensure 100% syllabus coverage.</p>
+            <a href="https://docs.google.com/spreadsheets/d/1P-wfccBfsEt80Mnj1buPR_t8DrG-sArZw6HrL8RBUcM/edit?usp=sharing" target="_blank" class="btn">View Checklist</a>
         </div>
         <div class="card">
-            <div>
-                <h3>67 Days Plan</h3>
-                <p>An alternative intensive revision schedule by Haris Rehman.</p>
-            </div>
-            <a href="https://drive.google.com/file/d/1HPQxV7PPsRU3c8R2HCNk17chsTSp0QVM/view?usp=sharing" target="_blank" class="btn btn-outline">Open Plan</a>
-        </div>
-    </div>
-
-    <h2 class="section-title">Teacher & Community Notes</h2>
-    <div class="grid">
-        <div class="card">
-            <div>
-                <h3>Revision Guide</h3>
-                <p>Comprehensive maths revision file for quick lookups.</p>
-            </div>
-            <a href="https://drive.google.com/file/d/1IoVDXFmyipN-zaewft9Nx_zzsUqLnBqX/view?usp=sharing" target="_blank" class="btn btn-outline">Access</a>
+            <h3>Zainematics Checklist</h3>
+            <p>O-Level specific tracker for organized preparation.</p>
+            <a href="https://docs.google.com/spreadsheets/d/18xChgpA2EQDLKtF6M5R0Eav3sNLCI8LzFHDlGtecaYs/edit?usp=sharing" target="_blank" class="btn">View Checklist</a>
         </div>
         <div class="card">
-            <div>
-                <h3>Veda Notes</h3>
-                <p>Widely considered the best for quick chapter summaries.</p>
-            </div>
-            <a href="https://drive.google.com/file/d/1RUSXx0XZwEtGaMYR7ZOk5vqylyxo-zbY/view?usp=sharing" target="_blank" class="btn btn-outline">Access</a>
+            <h3>60 Day Plan</h3>
+            <p>Zainematics' structured roadmap for two-month revision.</p>
+            <a href="https://docs.google.com/spreadsheets/d/18xChgpA2EQDLKtF6M5R0Eav3sNLCI8LzFHDlGtecaYs/edit?usp=sharing" target="_blank" class="btn">Start Plan</a>
         </div>
         <div class="card">
-            <div>
-                <h3>Mojza Notes</h3>
-                <p>High-quality compiled notes for O-Level and IGCSE.</p>
-            </div>
-            <a href="https://mojza.org/wp-content/uploads/2025/10/OL-IG-MATHS-notes.pdf" target="_blank" class="btn btn-outline">Access</a>
-        </div>
-        <div class="card">
-            <div>
-                <h3>Zainematics Folder</h3>
-                <p>Extensive resource drive by the legend himself.</p>
-            </div>
-            <a href="https://drive.google.com/drive/folders/1TLPu18v62VTEI3_oq8HapdeByqvA712c?usp=sharing" target="_blank" class="btn btn-outline">Access</a>
-        </div>
-        <div class="card">
-            <div>
-                <h3>Physics & Maths Tutor</h3>
-                <p>Topical questions and detailed revision notes.</p>
-            </div>
-            <a href="https://www.physicsandmathstutor.com/maths-revision/" target="_blank" class="btn btn-outline">Visit Site</a>
-        </div>
-        <div class="card">
-            <div>
-                <h3>Overmugged</h3>
-                <p>Excellent E-Math resources and summary sheets.</p>
-            </div>
-            <a href="https://www.overmugged.com/e-math" target="_blank" class="btn btn-outline">Visit Site</a>
+            <h3>67 Days Plan</h3>
+            <p>Comprehensive revision schedule by Haris Rehman.</p>
+            <a href="https://drive.google.com/file/d/1HPQxV7PPsRU3c8R2HCNk17chsTSp0QVM/view?usp=sharing" target="_blank" class="btn">Start Plan</a>
         </div>
     </div>
 
-    <h2 class="section-title">Topical Focus</h2>
+    <div class="section-header">📖 Topic Specific Notes</div>
     <div class="grid">
         <div class="card">
-            <div>
-                <h3>Shinglee Topical</h3>
-                <p>Notes organized specifically by Shinglee methodology.</p>
-            </div>
-            <a href="https://drive.google.com/file/d/1VTes1SX8ksdkKermxp3bKk3XYTf9zMEC/view?usp=sharing" target="_blank" class="btn btn-primary">Open Notes</a>
+            <h3>Circle Theorems</h3>
+            <p>A full visual guide to all the geometry rules you need.</p>
+            <a href="https://drive.google.com/drive/folders/1yYLbtzKnaaSsgqE-15sKrHF7t3dFuG7I?usp=sharing" target="_blank" class="btn">View Notes</a>
         </div>
         <div class="card">
-            <div>
-                <h3>Mathlete Drive</h3>
-                <p>A deep collection of math resources and worksheets.</p>
-            </div>
-            <a href="https://drive.google.com/drive/folders/1Vl_DwOMIVUGH1K7xKqSIb9kZDltL7Rj9?usp=sharing" target="_blank" class="btn btn-outline">Access</a>
+            <h3>Number Sequences</h3>
+            <p>Master the patterns and nth term formulas.</p>
+            <a href="https://docs.google.com/document/d/1tH917-uI_TrPFLOVGN1Thm04zgbStv4d3u5S1zJLQO0/edit?usp=sharing" target="_blank" class="btn">View Notes</a>
         </div>
         <div class="card">
-            <div>
-                <h3>Student Base</h3>
-                <p>Platform-specific notes for CAIE Mathematics.</p>
-            </div>
-            <a href="https://studentbase.app/caie/o-level/mathematics" target="_blank" class="btn btn-outline">Access</a>
+            <h3>Coordinate Geometry</h3>
+            <p>Graphs, gradients, midpoints, and line equations.</p>
+            <a href="https://drive.google.com/file/d/14i2bnHt-5wZJlwmDMtP2UNelZnD5cIYv/view?usp=drive_link" target="_blank" class="btn">View Notes</a>
+        </div>
+        <div class="card">
+            <h3>Mensuration</h3>
+            <p>Guide to Area, Volume, and Surface Area of shapes.</p>
+            <a href="https://drive.google.com/file/d/1FLhMLwU6LqF1TOXDFBiCaGR1jrN6gMDt/view?usp=drive_link" target="_blank" class="btn">View Notes</a>
+        </div>
+        <div class="card">
+            <h3>Sets & Subsets</h3>
+            <p>Understanding Venn diagrams and logical notation.</p>
+            <a href="https://drive.google.com/file/d/1cKkOqWwnFnLumLExnTTVy3QhbuuhNAW9/view?usp=drive_link" target="_blank" class="btn">View Notes</a>
         </div>
     </div>
 
-    <h2 class="section-title">Past Papers Practice</h2>
+    <div class="section-header">👨‍🏫 Community & Teacher Resources</div>
     <div class="grid">
-        <div class="card" style="border-color: #ff4b2b;">
-            <div>
-                <h3 style="color: #ff4b2b;">Mega Past Papers File</h3>
-                <p>O-Level and IGCSE past papers archive (Question Papers & Mark Schemes).</p>
-            </div>
-            <a href="https://drive.google.com/drive/folders/1mX3OSZESBIqS2TcPgxHxxVsGpFsnqozP?usp=sharing" target="_blank" class="btn btn-primary" style="background: #ff4b2b; box-shadow: 0 0 15px rgba(255, 75, 43, 0.4);">Practice Now</a>
+        <div class="card featured">
+            <h3>Maths Mega Folder</h3>
+            <p>The legendary collection by Haris Rehman. Everything you need.</p>
+            <a href="https://drive.google.com/drive/folders/1yYLbtzKnaaSsgqE-15sKrHF7t3dFuG7I?usp=sharing" target="_blank" class="btn">Access Drive</a>
         </div>
         <div class="card">
-            <div>
-                <h3>IGCSE Hardest Questions</h3>
-                <p>Challenge yourself with a curated list of the toughest exam questions.</p>
-            </div>
-            <a href="https://drive.google.com/drive/folders/1p0FXXkhT0vltOsa7DNFQUn-1LKcTlmQJ?usp=drive_link" target="_blank" class="btn btn-outline">Face the Challenge</a>
+            <h3>Revision Guide</h3>
+            <p>Complete all-in-one guide for final stage revision.</p>
+            <a href="https://drive.google.com/file/d/1IoVDXFmyipN-zaewft9Nx_zzsUqLnBqX/view?usp=sharing" target="_blank" class="btn">Open PDF</a>
+        </div>
+        <div class="card">
+            <h3>Veda Notes</h3>
+            <p>Short, concise summaries. Best for a night-before review.</p>
+            <a href="https://drive.google.com/file/d/1RUSXx0XZwEtGaMYR7ZOk5vqylyxo-zbY/view?usp=sharing" target="_blank" class="btn">Open PDF</a>
+        </div>
+        <div class="card">
+            <h3>Mojza Notes</h3>
+            <p>Beautifully structured notes for conceptual clarity.</p>
+            <a href="https://mojza.org/wp-content/uploads/2025/10/OL-IG-MATHS-notes.pdf" target="_blank" class="btn">Open PDF</a>
+        </div>
+        <div class="card">
+            <h3>PMT Revision</h3>
+            <p>Detailed topical worksheets and walkthroughs.</p>
+            <a href="https://www.physicsandmathstutor.com/maths-revision/" target="_blank" class="btn">Visit Website</a>
+        </div>
+        <div class="card">
+            <h3>Overmugged</h3>
+            <p>Excellent E-Math resources for Singapore-Cambridge style.</p>
+            <a href="https://www.overmugged.com/e-math" target="_blank" class="btn">Visit Website</a>
+        </div>
+        <div class="card">
+            <h3>Student Base</h3>
+            <p>Community driven notes and past year resources.</p>
+            <a href="https://studentbase.app/caie/o-level/mathematics" target="_blank" class="btn">Visit Website</a>
+        </div>
+        <div class="card">
+            <h3>Zainematics Drive</h3>
+            <p>Full folder of the most popular math videos and notes.</p>
+            <a href="https://drive.google.com/drive/folders/1TLPu18v62VTEI3_oq8HapdeByqvA712c?usp=sharing" target="_blank" class="btn">Access Drive</a>
+        </div>
+        <div class="card">
+            <h3>Mathlete Drive</h3>
+            <p>Handwritten and typed notes for all levels.</p>
+            <a href="https://drive.google.com/drive/folders/1Vl_DwOMIVUGH1K7xKqSIb9kZDltL7Rj9?usp=sharing" target="_blank" class="btn">Access Drive</a>
+        </div>
+        <div class="card">
+            <h3>Shinglee Topical</h3>
+            <p>Standardized topical notes for rigorous practice.</p>
+            <a href="https://drive.google.com/file/d/1VTes1SX8ksdkKermxp3bKk3XYTf9zMEC/view?usp=sharing" target="_blank" class="btn">Open PDF</a>
+        </div>
+    </div>
+
+    <div class="section-header">📝 Past Paper Practice</div>
+    <div class="grid">
+        <div class="card">
+            <h3>Mega Past Papers File</h3>
+            <p>O-Level and IGCSE past papers archive (QP & MS).</p>
+            <a href="https://drive.google.com/drive/folders/1mX3OSZESBIqS2TcPgxHxxVsGpFsnqozP?usp=sharing" target="_blank" class="btn">Access Papers</a>
+        </div>
+        <div class="card">
+            <h3>IGCSE Hardest Questions</h3>
+            <p>The most difficult exam questions collected for high-achievers.</p>
+            <a href="https://drive.google.com/drive/folders/1p0FXXkhT0vltOsa7DNFQUn-1LKcTlmQJ?usp=drive_link" target="_blank" class="btn">Take the Test</a>
         </div>
     </div>
 
     <footer>
-        <p>Stay Bright. Study Hard. ⚡<br>StudyVault Maths Archive 2026</p>
+        <p>Keep Solving. Keep Shining. ⚡<br>StudyVault 2026</p>
     </footer>
 </div>
 
@@ -278,6 +271,13 @@
             btn.innerHTML = "☀️ Light Mode";
         }
     }
+
+    window.onload = () => {
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('themeBtn').innerHTML = "☀️ Light Mode";
+        }
+    };
 
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
@@ -303,7 +303,7 @@
         ctx.clearRect(0, 0, width, height);
         for (let i = 0; i < 400; i++) {
             let star = stars[i];
-            star.z -= 0.8;
+            star.z -= 1.0;
             if (star.z <= 0) star.z = width;
             const sx = (star.x / star.z) * (width / 2) + width / 2;
             const sy = (star.y / star.z) * (height / 2) + height / 2;
