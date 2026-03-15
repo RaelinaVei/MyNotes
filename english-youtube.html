@@ -42,22 +42,24 @@
             gap: 10px;
             text-decoration: none;
             color: white;
-            background: var(--card-bg);
-            padding: 10px 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            font-weight: 700;
-            transition: 0.3s;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 12px 28px;
+            border-radius: 50px; 
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
         }
 
         .back-btn:hover {
+            background: rgba(188, 19, 254, 0.1);
             border-color: var(--primary);
             box-shadow: var(--glow);
-            transform: translateX(-5px);
+            transform: translateY(-2px);
         }
 
         header {
@@ -66,7 +68,7 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 4px;
@@ -114,10 +116,14 @@
         }
 
         .channel-name {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 800;
             margin-bottom: 15px;
             color: white;
+            min-height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .channel-tags {
@@ -128,7 +134,7 @@
         }
 
         .tag {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             background: rgba(188, 19, 254, 0.2);
             color: var(--primary);
             padding: 4px 12px;
@@ -139,7 +145,7 @@
         }
 
         .channel-desc {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--subtext);
             line-height: 1.6;
             margin-bottom: 25px;
@@ -173,58 +179,104 @@
 <body>
 
     <nav class="back-nav">
-        <a href="index.html" class="back-btn">⚡ Back to Vault</a>
+        <a href="index.html" class="back-btn">← Back to Dashboard</a>
     </nav>
 
     <header>
         <h1>English 1123</h1>
-        <p class="subtitle">Best YouTube Channels for Paper 1 & Paper 2</p>
+        <p class="subtitle">Premium YouTube Resources for O Level English</p>
     </header>
 
     <div class="channel-grid">
         <div class="channel-card">
             <div>
+                <div class="channel-icon">🐙</div>
+                <div class="channel-name">ItsBoktopus</div>
+                <div class="channel-tags">
+                    <span class="tag">Ma'am Haleema Amir</span>
+                    <span class="tag">Exam Prep</span>
+                </div>
+                <p class="channel-desc">Detailed and easy-to-follow explanations by Ma'am Haleema Amir, specifically tailored for the 1123 syllabus.</p>
+            </div>
+            <a href="https://www.youtube.com/@ItsBoktopus" target="_blank" class="visit-btn">Visit Channel</a>
+        </div>
+
+        <div class="channel-card">
+            <div>
+                <div class="channel-icon">🎓</div>
+                <div class="channel-name">Taughtly</div>
+                <div class="channel-tags">
+                    <span class="tag">Syllabus Theory</span>
+                </div>
+                <p class="channel-desc">Excellent for understanding the formal requirements and theoretical aspects of CAIE English.</p>
+            </div>
+            <a href="https://www.youtube.com/@Taughtly" target="_blank" class="visit-btn">Visit Channel</a>
+        </div>
+
+        <div class="channel-card">
+            <div>
+                <div class="channel-icon">📝</div>
+                <div class="channel-name">Cher's English P1</div>
+                <div class="channel-tags">
+                    <span class="tag">Directed Writing</span>
+                </div>
+                <p class="channel-desc">In-depth playlist covering formats and content for various Paper 1 writing tasks.</p>
+            </div>
+            <a href="https://www.youtube.com/playlist?list=PLcskd3Mc7Onc1dt_rsALQBDqrfS5X-0eL" target="_blank" class="visit-btn">View Playlist</a>
+        </div>
+
+        <div class="channel-card">
+            <div>
+                <div class="channel-icon">📖</div>
+                <div class="channel-name">Cher's English P2</div>
+                <div class="channel-tags">
+                    <span class="tag">Comprehension</span>
+                </div>
+                <p class="channel-desc">Focuses on Paper 2 skills, including summary writing and understanding explicit/implicit meanings.</p>
+            </div>
+            <a href="https://youtube.com/playlist?list=PLcskd3Mc7OnepxiSkFbsSRqR_hGet1Foe" target="_blank" class="visit-btn">View Playlist</a>
+        </div>
+
+        <div class="channel-card">
+            <div>
+                <div class="channel-icon">🏆</div>
+                <div class="channel-name">IGCSESUCCESS</div>
+                <div class="channel-tags">
+                    <span class="tag">Exam Strategy</span>
+                </div>
+                <p class="channel-desc">Proven strategies to boost marks and manage time effectively during the actual exam.</p>
+            </div>
+            <a href="https://www.youtube.com/@IGCSESUCCESS" target="_blank" class="visit-btn">Visit Channel</a>
+        </div>
+
+        <div class="channel-card">
+            <div>
+                <div class="channel-icon">⚡</div>
+                <div class="channel-name">Mr Everything English</div>
+                <div class="channel-tags">
+                    <span class="tag">Analysis</span>
+                </div>
+                <p class="channel-desc">Great for high-energy sessions on sentence structure and advanced vocabulary usage.</p>
+            </div>
+            <a href="https://www.youtube.com/@MrEverythingEnglish" target="_blank" class="visit-btn">Visit Channel</a>
+        </div>
+
+        <div class="channel-card">
+            <div>
                 <div class="channel-icon">🎬</div>
                 <div class="channel-name">Skilled Resources</div>
                 <div class="channel-tags">
-                    <span class="tag">Paper 1</span>
-                    <span class="tag">Paper 2</span>
+                    <span class="tag">Paper Walkthroughs</span>
                 </div>
-                <p class="channel-desc">The "gold standard" for 1123. Excellent breakdowns of Directed Writing, Composition, and Comprehension strategies.</p>
+                <p class="channel-desc">Watch full past paper walkthroughs to see how to apply techniques in real-time.</p>
             </div>
-            <a href="https://www.youtube.com/@SkilledResources" target="_blank" class="visit-link visit-btn">Visit Channel</a>
-        </div>
-
-        <div class="channel-card">
-            <div>
-                <div class="channel-icon">✍️</div>
-                <div class="channel-name">English with Saira</div>
-                <div class="channel-tags">
-                    <span class="tag">Grammar</span>
-                    <span class="tag">Past Papers</span>
-                </div>
-                <p class="channel-desc">Great for bilingual students. Provides clear explanations of tricky grammar points and paper walkthroughs.</p>
-            </div>
-            <a href="https://www.youtube.com/@EnglishwithSaira" target="_blank" class="visit-link visit-btn">Visit Channel</a>
-        </div>
-
-        <div class="channel-card">
-            <div>
-                <div class="channel-icon">💡</div>
-                <div class="channel-name">Cambridge English</div>
-                <div class="channel-tags">
-                    <span class="tag">Skills</span>
-                    <span class="tag">Exam Tips</span>
-                </div>
-                <p class="channel-desc">Focused on the technical requirements of the Cambridge syllabus, specifically summary writing and P2 techniques.</p>
-            </div>
-            <a href="#" target="_blank" class="visit-link visit-btn">Visit Channel</a>
+            <a href="https://www.youtube.com/@SkilledResources" target="_blank" class="visit-btn">Visit Channel</a>
         </div>
     </div>
 
     <div class="section-divider"></div>
 
-    <p style="color: var(--subtext); font-size: 0.8rem; opacity: 0.6;">More resources being added soon...</p>
+    <p style="color: var(--subtext); font-size: 0.8rem; opacity: 0.6;">More subject vaults coming soon.</p>
 
 </body>
 </html>
