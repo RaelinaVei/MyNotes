@@ -15,50 +15,60 @@
         }
 
         body { 
-            font-family: 'Segoe UI', sans-serif; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             color: var(--text); 
             margin: 0; padding: 20px; 
+            min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), var(--bg-image);
-            background-size: cover; background-attachment: fixed;
+            background-size: cover; background-position: center; background-attachment: fixed;
             display: flex; flex-direction: column; align-items: center;
         }
 
         .back-nav { width: 100%; max-width: 1200px; margin-bottom: 30px; }
         .back-btn {
+            display: inline-flex; align-items: center; gap: 10px;
             text-decoration: none; color: white; background: rgba(255, 255, 255, 0.05); 
-            padding: 10px 20px; border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.15);
-            font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s;
+            padding: 12px 25px; border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.15);
+            font-weight: 600; transition: all 0.3s ease; backdrop-filter: blur(8px);
+            text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1.5px;
         }
-        .back-btn:hover { background: rgba(188, 19, 254, 0.2); border-color: var(--primary); box-shadow: var(--glow); }
+        .back-btn:hover { background: rgba(188, 19, 254, 0.1); border-color: var(--primary); box-shadow: var(--glow); transform: translateY(-2px); }
 
-        h1 { font-size: 3rem; color: var(--primary); text-transform: uppercase; text-shadow: var(--glow); margin-bottom: 5px; }
-        .subtitle { color: var(--subtext); margin-bottom: 40px; font-style: italic; }
+        header { text-align: center; margin-bottom: 50px; }
+        h1 { font-size: 3.5rem; color: var(--primary); text-transform: uppercase; letter-spacing: 4px; text-shadow: var(--glow); margin: 0; }
+        .subtitle { color: var(--subtext); font-style: italic; letter-spacing: 1px; margin-top: 10px; }
 
         .channel-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px; width: 100%; max-width: 1200px;
+            gap: 25px; width: 100%; max-width: 1200px;
         }
 
         .channel-card {
-            background: var(--card-bg); backdrop-filter: blur(10px);
-            padding: 25px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between;
+            background: var(--card-bg); backdrop-filter: blur(15px);
+            padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center; transition: 0.3s ease;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-        .channel-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--glow); }
+        .channel-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: var(--glow); }
 
-        .icon { font-size: 2.5rem; margin-bottom: 10px; }
-        .name { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
-        .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-bottom: 15px; }
-        .tag { font-size: 0.6rem; background: rgba(188, 19, 254, 0.2); color: var(--primary); padding: 3px 8px; border-radius: 10px; font-weight: bold; }
-        .desc { font-size: 0.85rem; color: var(--subtext); line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
+        .icon { font-size: 3rem; margin-bottom: 15px; filter: drop-shadow(0 0 10px var(--primary)); }
+        .name { font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; color: white; min-height: 3.5rem; display: flex; align-items: center; justify-content: center; }
+        
+        .tags { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+        .tag { font-size: 0.65rem; background: rgba(188, 19, 254, 0.2); color: var(--primary); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--primary); font-weight: bold; text-transform: uppercase; }
+        
+        .desc { font-size: 0.9rem; color: var(--subtext); line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
         
         .visit-btn {
             text-decoration: none; color: white; background: var(--primary);
-            padding: 10px; border-radius: 8px; font-weight: bold; font-size: 0.9rem;
-            transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            padding: 12px 20px; border-radius: 12px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+            box-shadow: var(--glow);
         }
-        .visit-btn:hover { filter: brightness(1.2); transform: scale(1.02); }
+        .visit-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
+
+        .footer-spacer { height: 60px; }
     </style>
 </head>
 <body>
@@ -67,8 +77,10 @@
         <a href="index.html" class="back-btn">← Back to Dashboard</a>
     </nav>
 
-    <h1>Mathematics 4024</h1>
-    <p class="subtitle">Complete Learning & Resource Collection</p>
+    <header>
+        <h1>Mathematics 4024</h1>
+        <p class="subtitle">The Ultimate Resource Vault for O/A Level Success</p>
+    </header>
 
     <div class="channel-grid">
         <div class="channel-card">
@@ -76,7 +88,7 @@
                 <div class="icon">👑</div>
                 <div class="name">Zainematics</div>
                 <div class="tags"><span class="tag">Urdu/Hindi</span><span class="tag">Concept King</span></div>
-                <p class="desc">The gold standard for students who understand Urdu/Hindi. Deep conceptual clarity for O & A Levels.</p>
+                <p class="desc">Deep conceptual clarity for students who understand Urdu/Hindi. The go-to channel for mastering O & A Level foundations.</p>
             </div>
             <a href="https://www.youtube.com/@Zainematics" target="_blank" class="visit-btn">Visit Channel</a>
         </div>
@@ -84,19 +96,19 @@
         <div class="channel-card">
             <div>
                 <div class="icon">🏃</div>
-                <div class="name">Mathlete by Saad Amer</div>
+                <div class="name">Mathlete by Saad</div>
                 <div class="tags"><span class="tag">Past Papers</span><span class="tag">Marathons</span></div>
-                <p class="desc">Best for intensive past paper practice and solving sessions specifically for 4024.</p>
+                <p class="desc">Intensive past paper practice and live solving marathons. Perfect for exam season preparation for 4024.</p>
             </div>
-            <a href="https://www.youtube.com/@MathletebySaadAmer" target="_blank" class="visit-btn">Visit Channel</a>
+            <a href="https://www.youtube.com/@MathletebySaad" target="_blank" class="visit-btn">Visit Channel</a>
         </div>
 
         <div class="channel-card">
             <div>
                 <div class="icon">💡</div>
                 <div class="name">Cognito</div>
-                <div class="tags"><span class="tag">Animations</span><span class="tag">Visuals</span></div>
-                <p class="desc">Bite-sized, high-quality animated videos that help you visualize complex math and science topics.</p>
+                <div class="tags"><span class="tag">Animations</span><span class="tag">Visual Learning</span></div>
+                <p class="desc">Incredible high-quality animations that make visualizing mathematical and scientific concepts effortless.</p>
             </div>
             <a href="https://www.youtube.com/@CognitoEdu" target="_blank" class="visit-btn">Visit Channel</a>
         </div>
@@ -105,8 +117,8 @@
             <div>
                 <div class="icon">🥇</div>
                 <div class="name">1st Class Maths</div>
-                <div class="tags"><span class="tag">IGCSE</span><span class="tag">Exam Questions</span></div>
-                <p class="desc">High-quality tutorials focusing on specific exam question types and predicted papers.</p>
+                <div class="tags"><span class="tag">IGCSE</span><span class="tag">Question Focus</span></div>
+                <p class="desc">Clear tutorials focusing on specific exam question styles and predicted papers to boost grade performance.</p>
             </div>
             <a href="https://www.youtube.com/@1stclassmaths" target="_blank" class="visit-btn">Visit Channel</a>
         </div>
@@ -115,8 +127,8 @@
             <div>
                 <div class="icon">🦊</div>
                 <div class="name">Ginger Mathematician</div>
-                <div class="tags"><span class="tag">Exam Hacks</span><span class="tag">Calculator Tips</span></div>
-                <p class="desc">Expert strategies, calculator hacks, and revision shortcuts for IGCSE/O Level success.</p>
+                <div class="tags"><span class="tag">Exam Hacks</span><span class="tag">Tips & Tricks</span></div>
+                <p class="desc">Practical revision shortcuts, calculator hacks, and top-tier strategies for conquering IGCSE and O Level exams.</p>
             </div>
             <a href="https://www.youtube.com/@GingerMathematician" target="_blank" class="visit-btn">Visit Channel</a>
         </div>
@@ -126,7 +138,7 @@
                 <div class="icon">📚</div>
                 <div class="name">Learn Today IGCSE</div>
                 <div class="tags"><span class="tag">Revision</span><span class="tag">Syllabus Guide</span></div>
-                <p class="desc">Concise revision videos designed to cover syllabus requirements efficiently.</p>
+                <p class="desc">Efficient and concise revision videos designed to cover the entire syllabus with speed and accuracy.</p>
             </div>
             <a href="https://www.youtube.com/@LearnTodayIGCSE" target="_blank" class="visit-btn">Visit Channel</a>
         </div>
@@ -135,8 +147,8 @@
             <div>
                 <div class="icon">🖋️</div>
                 <div class="name">D. Math Academy</div>
-                <div class="tags"><span class="tag">Textbook Solutions</span><span class="tag">Step-by-Step</span></div>
-                <p class="desc">Specializes in step-by-step solutions for the New Syllabus Mathematics (D1-D4) series.</p>
+                <div class="tags"><span class="tag">Textbook Help</span><span class="tag">Step-by-Step</span></div>
+                <p class="desc">Specialized step-by-step guidance for the New Syllabus Mathematics (D1-D4) series and topical questions.</p>
             </div>
             <a href="https://www.youtube.com/@dmathacademy" target="_blank" class="visit-btn">Visit Channel</a>
         </div>
@@ -145,18 +157,18 @@
             <div>
                 <div class="icon">📝</div>
                 <div class="name">Science and Math Papers</div>
-                <div class="tags"><span class="tag">Past Papers</span><span class="tag">Full Solutions</span></div>
-                <p class="desc">Pure past paper walkthroughs. Excellent for seeing how to structure answers in real-time.</p>
+                <div class="tags"><span class="tag">Paper Solving</span><span class="tag">Full Solutions</span></div>
+                <p class="desc">Pure past paper walkthroughs for Science and Maths. Learn exactly how to structure your answers for max marks.</p>
             </div>
-            <a href="https://www.youtube.com/@ScienceandMathsPapers" target="_blank" class="visit-btn">Visit Channel</a>
+            <a href="https://www.youtube.com/@scienceandmathpapers" target="_blank" class="visit-btn">Visit Channel</a>
         </div>
 
         <div class="channel-card">
             <div>
                 <div class="icon">🧪</div>
-                <div class="name">The Organic Chemistry Tutor</div>
-                <div class="tags"><span class="tag">Global Standard</span><span class="tag">Algebra/Trig</span></div>
-                <p class="desc">While the name says chemistry, his math tutorials (Algebra, Trig, Calculus) are world-class.</p>
+                <div class="name">Organic Chemistry Tutor</div>
+                <div class="tags"><span class="tag">Global Tutorial</span><span class="tag">Math Basics</span></div>
+                <p class="desc">Universal masterclass for Algebra, Trig, and Calculus. His step-by-step logic is legendary for clearing doubts.</p>
             </div>
             <a href="https://www.youtube.com/@TheOrganicChemistryTutor" target="_blank" class="visit-btn">Visit Channel</a>
         </div>
@@ -165,13 +177,13 @@
             <div>
                 <div class="icon">📄</div>
                 <div class="name">Corbettmaths</div>
-                <div class="tags"><span class="tag">Worksheets</span><span class="tag">Practice</span></div>
-                <p class="desc">The ultimate resource for "5-a-day" practice and endless topic-based worksheets.</p>
+                <div class="tags"><span class="tag">Worksheets</span><span class="tag">Daily Practice</span></div>
+                <p class="desc">The ultimate resource for "5-a-day" practice and a massive collection of topic-based worksheets.</p>
             </div>
             <a href="https://www.youtube.com/@corbettmaths" target="_blank" class="visit-btn">Visit Channel</a>
         </div>
     </div>
 
-    <div style="height: 50px;"></div>
+    <div class="footer-spacer"></div>
 </body>
 </html>
