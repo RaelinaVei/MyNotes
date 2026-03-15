@@ -13,6 +13,7 @@
             --card-bg: rgba(255, 255, 255, 0.07); 
             --glow: 0 0 15px rgba(188, 19, 254, 0.5);
             --yellow: #fbbf24;
+            --red: #ff4b2b;
         }
 
         [data-theme="dark"] {
@@ -89,13 +90,17 @@
 
         .card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--glow); }
         
-        /* The specific Yellow Box request */
         .card.featured {
             border: 2px solid var(--yellow);
             background: rgba(251, 191, 36, 0.1);
         }
         .card.featured h3 { color: var(--yellow) !important; }
         .card.featured .btn { background: var(--yellow); color: black; border: none; }
+
+        .card.important-practice {
+            border: 1.5px solid var(--red);
+        }
+        .card.important-practice h3 { color: var(--red); }
 
         .card h3 { margin: 0 0 10px 0; font-size: 1.2rem; color: var(--primary); }
         .card p { font-size: 0.9rem; color: var(--subtext); line-height: 1.4; margin-bottom: 20px; }
@@ -123,7 +128,7 @@
 
     <header>
         <h1>Maths Vault 📐</h1>
-        <p class="subtitle">Premium Resources for IGCSE & O-Level</p>
+        <p class="subtitle">Complete Resource Hub for CAIE Mathematics</p>
     </header>
 
     <div class="section-header">⭐ Important Section</div>
@@ -243,17 +248,42 @@
         </div>
     </div>
 
-    <div class="section-header">📝 Past Paper Practice</div>
+    <div class="section-header">📝 Past Paper Practice & Worksheets</div>
     <div class="grid">
-        <div class="card">
+        <div class="card important-practice">
             <h3>Mega Past Papers File</h3>
             <p>O-Level and IGCSE past papers archive (QP & MS).</p>
             <a href="https://drive.google.com/drive/folders/1mX3OSZESBIqS2TcPgxHxxVsGpFsnqozP?usp=sharing" target="_blank" class="btn">Access Papers</a>
         </div>
         <div class="card">
-            <h3>IGCSE Hardest Questions</h3>
+            <h3>Hardest Questions</h3>
             <p>The most difficult exam questions collected for high-achievers.</p>
             <a href="https://drive.google.com/drive/folders/1p0FXXkhT0vltOsa7DNFQUn-1LKcTlmQJ?usp=drive_link" target="_blank" class="btn">Take the Test</a>
+        </div>
+        <div class="card">
+            <h3>Mathlete Worksheets</h3>
+            <p>Extensive topical practice sheets for focused revision.</p>
+            <a href="https://drive.google.com/drive/folders/1KqjWBuyXeB2blc6QHzeDnVe_IfiDuQqt?usp=drive_link" target="_blank" class="btn">Access Worksheets</a>
+        </div>
+        <div class="card">
+            <h3>Zainematics (Solved)</h3>
+            <p>Topical worksheets with step-by-step solutions provided.</p>
+            <a href="https://drive.google.com/drive/folders/1g4E_nlQTrjOtfwTvGYnZaRVqNk7opRxj?usp=drive_link" target="_blank" class="btn">View Solved</a>
+        </div>
+        <div class="card">
+            <h3>Zainematics (Unsolved)</h3>
+            <p>Practice sheets for self-testing and mock exams.</p>
+            <a href="https://drive.google.com/drive/folders/1bhpW8OCeyMJiunJ1w69haFOxw6jXk7OX?usp=drive_link" target="_blank" class="btn">View Unsolved</a>
+        </div>
+        <div class="card important-practice">
+            <h3>Redspot Topical P1</h3>
+            <p>Classified Paper 1 questions updated till 2023.</p>
+            <a href="https://drive.google.com/file/d/1ditPNBMoECNesySwyZXMWEdjHOkOHK_q/view?usp=drive_link" target="_blank" class="btn">Open Redspot P1</a>
+        </div>
+        <div class="card important-practice">
+            <h3>Redspot Topical P2</h3>
+            <p>Classified Paper 2 questions updated till 2023.</p>
+            <a href="https://drive.google.com/file/d/1PDrZ-fGEGWYjjttohP3p5d0vSliuZU03/view?usp=drive_link" target="_blank" class="btn">Open Redspot P2</a>
         </div>
     </div>
 
