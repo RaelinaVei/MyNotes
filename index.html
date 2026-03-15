@@ -232,50 +232,49 @@
 
         .links a:hover { background: var(--primary); box-shadow: var(--glow); }
 
-        /* --- CHANNELS SECTION --- */
-        .channel-box {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .channel-title {
+        /* --- UPDATED CHANNELS BOXES --- */
+        .channel-section-title {
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--subtext);
-            margin-bottom: 12px;
+            margin: 20px 0 10px 0;
             font-weight: 700;
             display: block;
+            text-align: center;
+            opacity: 0.6;
         }
 
-        .channel-btn-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+        .channel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
-        .channel-btn {
+        .channel-link {
             text-decoration: none;
-            color: #fff;
+            color: white;
             background: rgba(188, 19, 254, 0.05);
             border: 1px solid rgba(188, 19, 254, 0.3);
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-align: center;
             transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
 
-        .channel-btn:hover {
-            background: rgba(188, 19, 254, 0.2);
+        .channel-link:hover {
+            background: var(--primary);
             border-color: var(--primary);
-            transform: translateX(5px);
+            box-shadow: var(--glow);
+            transform: scale(1.05);
         }
-
-        .channel-btn span { font-size: 0.9rem; }
 
         /* --- COMMUNITY SECTION --- */
         .community-section {
@@ -445,12 +444,10 @@
                 <a href="https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-o-level-english-language-1123/" target="_blank">Syllabus <span>📋</span></a>
                 <a href="https://drive.google.com/drive/folders/1K_8t8Flup5AwcCUtdIWUvciybrsaCn0d?usp=sharing" target="_blank">Books <span>📚</span></a>
             </div>
-            <div class="channel-box">
-                <span class="channel-title">YouTube Learning</span>
-                <div class="channel-btn-list">
-                    <a href="#" class="channel-btn">The English Academy <span>📺</span></a>
-                    <a href="#" class="channel-btn">SkH-English <span>📺</span></a>
-                </div>
+            <span class="channel-section-title">YouTube Learning</span>
+            <div class="channel-grid">
+                <a href="#" class="channel-link">English Academy</a>
+                <a href="#" class="channel-link">SkH-English</a>
             </div>
         </div>
 
@@ -461,12 +458,10 @@
                 <a href="#">Syllabus <span>📋</span></a>
                 <a href="#">Books <span>📚</span></a>
             </div>
-            <div class="channel-box">
-                <span class="channel-title">YouTube Learning</span>
-                <div class="channel-btn-list">
-                    <a href="#" class="channel-btn">History with Yusra <span>📺</span></a>
-                    <a href="#" class="channel-btn">The Pak Studies Guru <span>📺</span></a>
-                </div>
+            <span class="channel-section-title">YouTube Learning</span>
+            <div class="channel-grid">
+                <a href="#" class="channel-link">History w/ Yusra</a>
+                <a href="#" class="channel-link">Study Guru</a>
             </div>
         </div>
 
@@ -477,12 +472,10 @@
                 <a href="#">Syllabus <span>📋</span></a>
                 <a href="#">Books <span>📚</span></a>
             </div>
-            <div class="channel-box">
-                <span class="channel-title">YouTube Learning</span>
-                <div class="channel-btn-list">
-                    <a href="#" class="channel-btn">Sir Muzammil <span>📺</span></a>
-                    <a href="#" class="channel-btn">Islamic Studies Academy <span>📺</span></a>
-                </div>
+            <span class="channel-section-title">YouTube Learning</span>
+            <div class="channel-grid">
+                <a href="#" class="channel-link">Sir Muzammil</a>
+                <a href="#" class="channel-link">Islamic Academy</a>
             </div>
         </div>
 
@@ -490,16 +483,13 @@
             <h2>Mathematics <span class="subject-code">4024</span></h2>
             <div class="links">
                 <a href="maths-notes.html">Notes <span>📖</span></a>
-                <a href="#">Syllabus <span>📋</span></a>
+                <a href="https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-o-level-mathematics-d-4024/" target="_blank">Syllabus <span>📋</span></a>
                 <a href="#">Books <span>📚</span></a>
             </div>
-            <div class="channel-box">
-                <span class="channel-title">YouTube Learning</span>
-                <div class="channel-btn-list">
-                    <a href="#" class="channel-btn">Zainematics <span>📺</span></a>
-                    <a href="#" class="channel-btn">D Math Academy <span>📺</span></a>
-                    <a href="#" class="channel-btn">Mathlete Saad <span>📺</span></a>
-                </div>
+            <span class="channel-section-title">YouTube Learning</span>
+            <div class="channel-grid">
+                <a href="#" class="channel-link">Zainematics</a>
+                <a href="#" class="channel-link">Mathlete Saad</a>
             </div>
         </div>
 
@@ -510,12 +500,10 @@
                 <a href="https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-o-level-biology-5090/" target="_blank">Syllabus <span>📋</span></a>
                 <a href="https://drive.google.com/drive/folders/10tHaHHjHJe4y7FXm-j2It0ge7qLbTzcI?usp=sharing" target="_blank">Books <span>📚</span></a>
             </div>
-            <div class="channel-box">
-                <span class="channel-title">YouTube Learning</span>
-                <div class="channel-btn-list">
-                    <a href="#" class="channel-btn">Science with Hazel <span>📺</span></a>
-                    <a href="#" class="channel-btn">Biology with Dr. NS <span>📺</span></a>
-                </div>
+            <span class="channel-section-title">YouTube Learning</span>
+            <div class="channel-grid">
+                <a href="#" class="channel-link">Hazel Science</a>
+                <a href="#" class="channel-link">Dr. NS Biology</a>
             </div>
         </div>
 
@@ -526,12 +514,10 @@
                 <a href="#">Syllabus <span>📋</span></a>
                 <a href="#">Books <span>📚</span></a>
             </div>
-            <div class="channel-box">
-                <span class="channel-title">YouTube Learning</span>
-                <div class="channel-btn-list">
-                    <a href="#" class="channel-btn">Chem with Bilal <span>📺</span></a>
-                    <a href="#" class="channel-btn">Cognito <span>📺</span></a>
-                </div>
+            <span class="channel-section-title">YouTube Learning</span>
+            <div class="channel-grid">
+                <a href="#" class="channel-link">Chem Bilal</a>
+                <a href="#" class="channel-link">Cognito</a>
             </div>
         </div>
 
@@ -542,12 +528,10 @@
                 <a href="#">Syllabus <span>📋</span></a>
                 <a href="#">Books <span>📚</span></a>
             </div>
-            <div class="channel-box">
-                <span class="channel-title">YouTube Learning</span>
-                <div class="channel-btn-list">
-                    <a href="#" class="channel-btn">Physics with Talha <span>📺</span></a>
-                    <a href="#" class="channel-btn">Prosperity Academy <span>📺</span></a>
-                </div>
+            <span class="channel-section-title">YouTube Learning</span>
+            <div class="channel-grid">
+                <a href="#" class="channel-link">Phys Talha</a>
+                <a href="#" class="channel-link">Prosperity</a>
             </div>
         </div>
     </div>
