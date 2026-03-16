@@ -23,6 +23,7 @@
             --pomo-bg: rgba(0, 0, 0, 0.7);
         }
 
+        /* Essential Reset for Responsiveness */
         * { box-sizing: border-box; }
 
         #starfield {
@@ -44,7 +45,8 @@
             background-position: center;
             background-attachment: fixed;
             transition: all 0.4s ease;
-            overflow-x: hidden; /* Critical for mobile */
+            overflow-x: hidden;
+            width: 100%;
         }
 
         /* --- NAVIGATION --- */
@@ -80,10 +82,10 @@
         .nav-panel {
             position: absolute;
             top: 34px;
-            right: 185px; 
+            right: 170px; 
             z-index: 1000;
             display: flex;
-            gap: 15px;
+            gap: 20px;
         }
 
         .nav-link {
@@ -107,11 +109,10 @@
         .theme-toggle {
             position: absolute; top: 25px; right: 25px;
             background: var(--primary); color: white;
-            border: none; padding: 10px 15px; border-radius: 30px;
+            border: none; padding: 10px 20px; border-radius: 30px;
             cursor: pointer; font-weight: bold;
             box-shadow: var(--glow); z-index: 1000;
-            font-size: 0.75rem;
-            white-space: nowrap;
+            font-size: 0.8rem;
         }
 
         /* --- CONTAINER --- */
@@ -120,7 +121,7 @@
             margin: 0 auto; 
             position: relative; 
             z-index: 1; 
-            padding: 0 15px; /* Tighter padding for mobile */
+            padding: 0 15px; /* Reduced for mobile */
             width: 100%;
         }
 
@@ -128,22 +129,22 @@
         
         h1 { 
             margin: 0; 
-            font-size: clamp(2rem, 10vw, 3.5rem); 
+            font-size: clamp(2rem, 8vw, 3.5rem); 
             color: var(--primary); 
             text-transform: uppercase;
             letter-spacing: 5px;
             text-shadow: var(--glow), 0 0 30px rgba(188, 19, 254, 0.4);
+            word-wrap: break-word;
         }
 
-        .greeting-container { margin-top: 10px; min-height: 40px; display: flex; justify-content: center; align-items: center;}
+        .greeting-container { margin-top: 10px; min-height: 30px; padding: 0 10px; }
 
         #dynamicGreeting {
             font-size: clamp(0.9rem, 4vw, 1.3rem);
             font-weight: 300;
             color: var(--subtext);
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             font-style: italic;
-            padding: 0 10px;
         }
 
         .cursor {
@@ -156,11 +157,11 @@
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .search-wrapper { margin: 20px auto; max-width: 500px; width: 100%; }
+        .search-wrapper { margin: 30px auto; max-width: 500px; width: 100%; }
 
         #subjectSearch {
             width: 100%;
-            padding: 12px 20px;
+            padding: 15px 25px;
             border-radius: 50px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             background: rgba(255, 255, 255, 0.1);
@@ -179,10 +180,10 @@
         #noResults {
             display: none;
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--subtext);
-            margin-top: 30px;
-            padding: 30px;
+            margin-top: 50px;
+            padding: 40px;
             background: var(--card-bg);
             border-radius: 20px;
         }
@@ -198,6 +199,7 @@
         .subject-card { 
             background: var(--card-bg); 
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 20px; 
             border-radius: 20px; 
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -217,29 +219,31 @@
 
         .subject-card h2 { 
             margin-top: 0; color: var(--primary); 
-            font-size: 1.2rem; text-shadow: var(--glow);
+            font-size: 1.3rem; text-shadow: var(--glow);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-            padding-bottom: 10px;
+            padding-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 10px;
         }
 
         .subject-code {
             font-size: 0.8rem;
             background: rgba(188, 19, 254, 0.15);
-            padding: 3px 8px;
+            padding: 4px 10px;
             border-radius: 8px;
             color: #fff;
             border: 1px solid var(--primary);
+            white-space: nowrap;
         }
 
-        .links { display: flex; flex-direction: column; gap: 8px; margin-top: 15px; }
+        .links { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
         
         .links a { 
             text-decoration: none; color: white; 
             background: var(--link-bg); 
-            padding: 10px 15px; border-radius: 10px; 
+            padding: 12px 15px; border-radius: 10px; 
             font-weight: 500; display: flex; justify-content: space-between;
             transition: 0.3s;
             font-size: 0.9rem;
@@ -248,27 +252,27 @@
         .links a:hover { background: var(--primary); box-shadow: var(--glow); }
 
         /* --- COMMUNITY SECTION --- */
-        .community-section { margin: 30px 0; padding: 0; }
+        .community-section { margin: 40px 0; padding: 0; }
         .community-header {
             text-align: center; color: var(--primary);
-            text-transform: uppercase; letter-spacing: 3px;
-            font-size: 1.1rem; margin-bottom: 20px; text-shadow: var(--glow);
+            text-transform: uppercase; letter-spacing: 4px;
+            font-size: 1.1rem; margin-bottom: 30px; text-shadow: var(--glow);
         }
 
         .community-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
+            gap: 15px;
         }
 
         .community-card {
             background: var(--card-bg);
             border: 1px solid rgba(255,255,255,0.1);
-            padding: 12px;
+            padding: 15px;
             border-radius: 15px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             text-decoration: none;
             color: white;
             transition: 0.3s;
@@ -278,13 +282,17 @@
             border-color: var(--primary);
             box-shadow: var(--glow);
             background: rgba(188, 19, 254, 0.1);
+            transform: scale(1.02);
         }
+
+        .comm-info strong { font-size: 0.9rem; display: block; }
+        .comm-info span { font-size: 0.75rem; opacity: 0.8; }
 
         /* --- DIVIDERS --- */
         .section-divider {
             height: 1px; width: 100%;
             background: linear-gradient(90deg, transparent, var(--primary), transparent);
-            margin: 40px 0; opacity: 0.6; box-shadow: var(--glow); position: relative;
+            margin: 60px 0; opacity: 0.6; box-shadow: var(--glow); position: relative;
         }
 
         .section-divider::after {
@@ -292,36 +300,37 @@
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             background: #0d0d0d; padding: 0 10px;
-            color: var(--primary); font-size: 0.6rem;
+            color: var(--primary); font-size: 0.65rem;
             letter-spacing: 3px; font-weight: 900;
             white-space: nowrap;
         }
 
         /* --- POMODORO --- */
         .pomodoro-container {
-            max-width: 100%; width: 450px; margin: 0 auto 40px auto;
+            max-width: 450px; margin: 0 auto 40px auto;
             background: var(--pomo-bg);
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px; padding: 30px 20px; text-align: center;
+            border-radius: 30px; padding: 30px; text-align: center;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             position: relative; overflow: hidden;
+            width: 100%;
         }
 
         .pomo-header {
             font-size: 1.1rem; font-weight: 700;
             color: var(--primary); text-transform: uppercase;
-            letter-spacing: 3px; margin-bottom: 15px; text-shadow: var(--glow);
+            letter-spacing: 4px; margin-bottom: 20px; text-shadow: var(--glow);
         }
 
         .pomo-time {
-            font-size: clamp(3rem, 18vw, 4.5rem); 
+            font-size: clamp(3rem, 12vw, 4.5rem); 
             font-weight: 800; color: #ffffff;
             margin: 10px 0; font-family: 'Segoe UI', sans-serif;
             font-variant-numeric: tabular-nums; text-shadow: var(--glow);
         }
 
-        .pomo-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+        .pomo-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 25px; }
 
         .pomo-btn {
             background: transparent; border: 1.5px solid var(--primary);
@@ -331,12 +340,12 @@
             font-size: 0.9rem;
         }
 
-        .pomo-btn:hover { background: var(--primary); box-shadow: var(--glow); }
+        .pomo-btn:hover { background: var(--primary); box-shadow: var(--glow); transform: translateY(-3px); }
 
-        footer { text-align: center; margin-top: 20px; padding-bottom: 40px; width: 100%; }
+        footer { text-align: center; margin-top: 20px; padding-bottom: 40px; width: 100%; overflow: hidden;}
 
         .scrolling-banner {
-            width: 100%; background: var(--primary); padding: 12px 0;
+            width: 100%; background: var(--primary); padding: 15px 0;
             overflow: hidden; border-radius: 12px; display: flex;
         }
 
@@ -350,24 +359,24 @@
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* =============================================
-            RESPONSIVENESS FIXES
+            MOBILE & TABLET RESPONSIVENESS
             ============================================= */
         
         @media (max-width: 900px) {
-            .nav-panel { right: 140px; top: 34px; }
+            .nav-panel { right: 25px; top: 75px; }
             header { padding-top: 130px; }
         }
 
-        @media (max-width: 650px) {
+        @media (max-width: 600px) {
             .logo-box { position: relative; top: 20px; left: 0; justify-content: center; width: 100%; margin-bottom: 10px; }
-            .theme-toggle { position: relative; top: 10px; right: 0; margin: 0 auto; display: block; width: fit-content; }
-            .nav-panel { position: relative; top: 20px; right: 0; justify-content: center; width: 100%; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;}
+            .theme-toggle { position: relative; top: 10px; right: 0; margin: 0 auto; display: block; width: 150px; }
+            .nav-panel { position: relative; top: 25px; right: 0; justify-content: center; width: 100%; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;}
             header { padding-top: 40px; }
             .subject-grid { grid-template-columns: 1fr; }
             .pomo-time { font-size: 3.5rem; }
+            .pomo-btn { padding: 12px 15px; font-size: 0.8rem;}
             .section-divider::after { font-size: 0.55rem; letter-spacing: 2px; }
-            .logo-text { font-size: 1rem; }
-            .nav-link { font-size: 0.65rem; }
+            .community-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -396,13 +405,13 @@
         </div>
         
         <div class="search-wrapper">
-            <input type="text" id="subjectSearch" placeholder="Search by name or code..." onkeyup="filterSubjects()">
+            <input type="text" id="subjectSearch" placeholder="Search by name or code (e.g. 5054)..." onkeyup="filterSubjects()">
         </div>
     </header>
 
     <div id="noResults">
-        <span style="font-size: 2.5rem;">🕵️‍♂️</span>
-        <p>No subjects found. Try a different code!</p>
+        <span style="font-size: 3rem;">🕵️‍♂️</span>
+        <p>No subjects found. Try searching for a different code!</p>
     </div>
 
     <div class="subject-grid" id="subjectGrid">
@@ -486,21 +495,42 @@
                 <span class="comm-icon">🌍</span>
                 <div class="comm-info">
                     <strong>r/IGCSE</strong>
-                    <br><small>Largest global hub</small>
+                    <span>Largest global hub</span>
                 </div>
             </a>
             <a href="https://discord.gg/ywpVAEbUsE" target="_blank" class="community-card">
                 <span class="comm-icon">📝</span>
                 <div class="comm-info">
                     <strong>ZNotes</strong>
-                    <br><small>Notes & Live Events</small>
+                    <span>Notes & Live Events</span>
                 </div>
             </a>
             <a href="https://discord.gg/k9ySXTwdz3" target="_blank" class="community-card">
                 <span class="comm-icon">🎓</span>
                 <div class="comm-info">
-                    <strong>O/A Levels</strong>
-                    <br><small>Peer-to-peer help</small>
+                    <strong>O/A Levels Community</strong>
+                    <span>Peer-to-peer help</span>
+                </div>
+            </a>
+            <a href="https://discord.gg/PBAZKksdgT" target="_blank" class="community-card">
+                <span class="comm-icon">⚡</span>
+                <div class="comm-info">
+                    <strong>Mojza</strong>
+                    <span>Resources & Support</span>
+                </div>
+            </a>
+            <a href="https://discord.gg/jmrwGQCWjQ" target="_blank" class="community-card">
+                <span class="comm-icon">☕</span>
+                <div class="comm-info">
+                    <strong>Nerd Cafe</strong>
+                    <span>Active Study Rooms</span>
+                </div>
+            </a>
+            <a href="https://discord.gg/coali-882126649687175199" target="_blank" class="community-card">
+                <span class="comm-icon">🏛️</span>
+                <div class="comm-info">
+                    <strong>COALI</strong>
+                    <span>Student Networking</span>
                 </div>
             </a>
         </div>
@@ -510,13 +540,13 @@
 
     <div class="pomodoro-container">
         <div class="pomo-header">Pomodoro Timer</div>
-        <div class="pomo-label" id="pomoStatus" style="font-size:0.8rem; opacity:0.8;">Focus Session</div>
+        <div class="pomo-label" id="pomoStatus">Focus Session</div>
         <div class="pomo-time" id="timerDisplay">25:00</div>
         <div class="pomo-controls">
             <button class="pomo-btn" onclick="toggleTimer()" id="pomoToggle">Start</button>
             <button class="pomo-btn reset" onclick="resetTimer()">Reset</button>
         </div>
-        <a href="timers.html" class="pomo-link" style="display:block; margin-top:20px; color:var(--primary); text-decoration:none; font-size:0.75rem;">⚙️ Custom Timers</a>
+        <a href="timers.html" class="pomo-link" style="display:block; margin-top:20px; color:var(--primary); text-decoration:none; font-size:0.8rem;">⚙️ Configure Custom Timers</a>
     </div>
 
     <footer>
@@ -532,7 +562,6 @@
 </div>
 
 <script>
-    // Keeping all your original logic exactly as is
     function initGreeting() {
         const greetingElement = document.getElementById('dynamicGreeting');
         const hour = new Date().getHours();
