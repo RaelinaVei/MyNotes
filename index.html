@@ -121,7 +121,7 @@
             margin: 0 auto; 
             position: relative; 
             z-index: 1; 
-            padding: 0 15px; 
+            padding: 0 15px; /* Reduced for mobile */
             width: 100%;
         }
 
@@ -251,16 +251,6 @@
 
         .links a:hover { background: var(--primary); box-shadow: var(--glow); }
 
-        /* --- SPOTIFY SECTION --- */
-        .spotify-container {
-            margin: 20px 0;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 25px;
-            border: 1px solid rgba(188, 19, 254, 0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
         /* --- COMMUNITY SECTION --- */
         .community-section { margin: 40px 0; padding: 0; }
         .community-header {
@@ -368,7 +358,10 @@
 
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- RESPONSIVENESS --- */
+        /* =============================================
+            MOBILE & TABLET RESPONSIVENESS
+            ============================================= */
+        
         @media (max-width: 900px) {
             .nav-panel { right: 25px; top: 75px; }
             header { padding-top: 130px; }
@@ -491,20 +484,6 @@
                 <a href="physics-youtube.html">YouTube Channels <span>🎬</span></a>
             </div>
         </div>
-    </div>
-
-    <div class="section-divider" data-label="STUDY RADIO"></div>
-
-    <div class="spotify-container">
-        <h2 class="community-header" style="margin-bottom: 15px;">Spotify Study Hub</h2>
-        <iframe style="border-radius:12px" 
-            src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWQRwui0Ex7X?utm_source=generator&theme=0" 
-            width="100%" height="152" frameBorder="0" allowfullscreen="" 
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
-        </iframe>
-        <p style="text-align: center; font-size: 0.75rem; color: var(--subtext); margin-top: 10px;">
-            Log in to Spotify on the player to access your personal playlists.
-        </p>
     </div>
 
     <div class="section-divider" data-label="DISCORD SERVERS"></div>
