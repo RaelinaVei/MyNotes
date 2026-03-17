@@ -5,15 +5,13 @@
 
 Welcome to **StudyVault**, a high-performance, neon-infused digital library designed specifically for O-Level students. This platform provides quick access to notes, past papers, and books with a sleek, distraction-free glassmorphism interface.
 
-🔗 **Live Link:** [Paste your GitHub Pages URL here]
+🔗 [[Live Link](https://raelinavei.github.io/StudyVault/#)]
 
 ---
 
-## ✨ Features
+## Features
 
 - 💜 **Neon Glassmorphism UI:** A modern, dark-themed aesthetic using CSS backdrop-filters.
-- ⏱️ **Exam Timer Hub:** Real-time practice timers for P1, P2, and P3 papers.
-- 📅 **Live Countdown:** A real-time ticker counting down to the May/June O-Level session.
 - 📱 **Fully Responsive:** Optimized for studying on laptops, tablets, and mobile phones.
 - 🌙 **Theme Toggle:** Switch between a vibrant light mode and a deep neon dark mode.
 
@@ -51,4 +49,4 @@ Have a specific paper request or found a broken link?
 ---
 
 ### ⚡ Stay Bright. Study Hard.
-Built with 💜 by [Your Name/Username]
+Built by [Raelina_vei]
